@@ -1,0 +1,155 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Pretty preamble for Astrophysics     %%
+%%        (c) Jakob Rørsted Mosumgaard       %%
+%%                                           %%
+%%   Time-stamp: <2015-10-06 11:03:03 moss>  %%         
+%%                                           %%
+%%              Made for pdfLaTeX            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Core
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Essentials
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[final]{microtype}
+
+% Language
+\usepackage[english]{babel}
+
+% Fonts
+\usepackage{libertine}            % Linux Libertine as text font
+\usepackage[libertine]{newtxmath} % Nicely scaled math font 
+\usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page set-up
+\setlrmarginsandblock{4cm}{*}{1} % Højre-venstre-marginer
+\setulmarginsandblock{*}{3.5cm}{1} % Top-bund-marginer
+\checkandfixthelayout[nearest] % Pænt
+
+% Basic pagestyle
+\makeoddfoot{plain}{}{\sffamily\small\thepage \ / \thelastpage}{}
+
+% Section headings
+\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+
+% Chapter headings
+\renewcommand{\chaptitlefont}{\Large\bfseries\sffamily}
+\renewcommand{\chapnumfont}{\chaptitlefont}    % To harmonise the font sizes
+\renewcommand{\chapnamefont}{\chaptitlefont}   % idem
+
+% Title
+\usepackage{titling}
+\pretitle{\begin{center}\sffamily\LARGE}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\sffamily\large}
+\postauthor{\end{center}}
+\predate{\begin{center}\sffamily}
+\postdate{\end{center}}
+\setlength{\droptitle}{-5em}
+
+% Magic  --> If only one page: No header or footer
+\AtEndDocument{\ifnum\value{page} = 1\thispagestyle{empty}\fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures and floats
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include graphics
+\usepackage{graphicx}
+
+% Width of caption
+\captionwidth{.8\linewidth}
+\changecaptionwidth
+
+% Trick to automatically end captions with a period
+\captiontitlefinal{.}
+
+% Cool tables with footnotes
+\usepackage{threeparttable, etoolbox}
+\appto\TPTnoteSettings{\footnotesize}  % Requires etoolbox
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Science
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+
+% Units
+\usepackage{siunitx, mathabx}
+\sisetup{separate-uncertainty=true}
+\DeclareSIUnit\au{AU}
+\DeclareSIUnit\year{Yr}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\msun{M_{\Sun}}
+\DeclareSIUnit\lsun{L_{\Sun}}
+
+% Delimeters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\langle}{\rangle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Smart quotations
+\usepackage{csquotes}
+
+% URL's
+\usepackage{url}
+
+% Nice itemizations
+\usepackage{enumitem}
+\firmlists
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nice spacing in macros
+\usepackage{xspace}
+
+% Small division
+\newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
+
+% Seperation in equation
+\newcommand\eqsep{\ensuremath{\quad , \quad}}
+
+% Lazyness
+\newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
+\newcommand\logg{\ensuremath{\log g}\xspace}
+
+% Name
+\newcommand\numpy{NumPy\xspace}
+
+% Diff
+\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
+
+% More lazy stuff
+\newcommand\parname[2]{\left(#1\right)_{\text{#2}}}
+
+% Gradients
+\newcommand\radgrad{\ensuremath{\nabla_{\textup{rad}}}\xspace}
+\newcommand\adgrad{\ensuremath{\nabla_{\textup{ad}}}\xspace}
+
+% Vectors (we are doing physics!)
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+% Nice subscript
+\newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
+\newcommand\upmean[1]{\ensuremath{\norm{#1}_{\textup{up}}}\xspace}
+\newcommand\dnmean[1]{\ensuremath{\norm{#1}_{\textup{dn}}}\xspace}
+
+
+%%%%%%%%%%%%%%
+%% The end! %%
+%%%%%%%%%%%%%%
