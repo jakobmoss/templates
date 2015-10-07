@@ -1,3 +1,6 @@
+## Created by emacs
+auto/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
