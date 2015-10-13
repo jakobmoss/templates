@@ -2,7 +2,7 @@
 %%      Pretty preamble for Astrophysics     %%
 %%        (c) Jakob Rørsted Mosumgaard       %%
 %%                                           %%
-%%   Time-stamp: <2015-10-09 09:34:24 moss>  %%         
+%%   Time-stamp: <2015-10-13 08:25:06 moss>  %%         
 %%                                           %%
 %%              Made for pdfLaTeX            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,7 +146,7 @@
 \newcommand\adgrad{\ensuremath{\nabla_{\textup{ad}}}\xspace}
 
 % Vectors (we are doing physics!)
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
 
 % Nice subscript
 \newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
@@ -157,3 +157,8 @@
 %%%%%%%%%%%%%%
 %% The end! %%
 %%%%%%%%%%%%%%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
