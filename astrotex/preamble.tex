@@ -2,7 +2,7 @@
 %%      Pretty preamble for Astrophysics     %%
 %%        (c) Jakob Rørsted Mosumgaard       %%
 %%                                           %%
-%%   Time-stamp: <2015-10-30 21:01:31 moss>  %%         
+%%   Time-stamp: <2016-03-30 10:34:56 moss>  %%         
 %%                                           %%
 %%              Made for pdfLaTeX            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,6 +75,9 @@
 \usepackage{threeparttable, etoolbox}
 \appto\TPTnoteSettings{\footnotesize}  % Requires etoolbox
 
+% Pretty colors
+\usepackage{xcolor}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Science
@@ -113,6 +116,9 @@
 % Smart references
 \usepackage{varioref}
 \usepackage{cleveref}
+
+% Debugging
+\usepackage[margin,draft]{fixme} \fxusetheme{color}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
