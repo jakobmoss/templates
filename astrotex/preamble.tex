@@ -2,7 +2,7 @@
 %%      Pretty preamble for Astrophysics     %%
 %%        (c) Jakob Rørsted Mosumgaard       %%
 %%                                           %%
-%%   Time-stamp: <2016-03-30 10:34:56 moss>  %%         
+%%   Time-stamp: <2016-03-30 14:23:21 moss>  %%         
 %%                                           %%
 %%              Made for pdfLaTeX            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,7 +16,7 @@
 \usepackage[final]{microtype}
 
 % Language
-\usepackage[english]{babel}
+\usepackage{babel}
 
 % Fonts
 \usepackage{libertine}            % Linux Libertine as text font
@@ -119,6 +119,10 @@
 
 % Debugging
 \usepackage[margin,draft]{fixme} \fxusetheme{color}
+
+% Format of date
+\usepackage[useregional]{datetime2}
+\DTMlangsetup[en-GB]{ord=omit}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
