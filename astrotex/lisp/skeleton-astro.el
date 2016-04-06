@@ -127,5 +127,5 @@ This only makes sense for empty buffers."
   "\\end{document}\n")
 
 
-(provide 'skeleton-latex)
-;;; skeleton-latex.el ends here
+(provide 'skeleton-astro)
+;;; skeleton-astro.el ends here
