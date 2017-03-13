@@ -1,0 +1,372 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  Speciale                 %%
+%%        (c) Jakob Rørsted Mosumgaard       %%
+%%                                           %%
+%%             Made for pdfLaTeX             %%
+%%                                           %%
+%%                  Preamble                 %%
+%%                                           %%
+%%  Original preamble af:                    %%
+%%     Jakob Rørsted Mosumgaard              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Fun with fonts %%%
+%%%%%%%%%%%%%%%%%%%%%%
+% Encodings
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Typography magic!
+\usepackage[final]{microtype}
+
+% Language (has to be loaded before the fonts..?)
+\usepackage[danish,english]{babel}
+\renewcommand\danishhyphenmins{22}
+% \usepackage[english]{babel}
+
+% Fonts
+% For inspiration: http://www.tug.dk/FontCatalogue/mathfonts.html
+\usepackage{libertine}            % Linux Libertine as text font
+\usepackage[libertine]{newtxmath} % Nicely scaled math font 
+\usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% End of Fun with fonts %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Villemoes' page set-up %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set a length
+\setlxvchars[\normalfont]
+
+% Set typeblock
+\settypeblocksize{*}{1.08\lxvchars}{1.61803}
+
+% Place typeblock depending on purpose
+\ifprint
+  \setlrmargins{*}{*}{1.33}
+\else
+  \setlrmargins{*}{*}{1}
+\fi
+
+% More placement
+\setulmargins{*}{*}{1.3}
+
+% Memoir magic
+\checkandfixthelayout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Villemoes' page set-up %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Styles (again Villemoes-inspired) %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% NOTE: Colors added everywhere, to make them easy to change!
+\usepackage{xcolor}
+
+% Fonts
+\newcommand{\foliofont}{\color{black}\sffamily}
+\newcommand{\headerfont}{\color{black}\sffamily}
+
+% Make new pagestyle
+\makepagestyle{jrmbsc}
+\makeevenhead{jrmbsc}{\foliofont\thepage}    {} {\headerfont\leftmark}
+\makeoddhead {jrmbsc}{\headerfont\projecttitle} {} {\foliofont\thepage}
+\makeevenfoot{jrmbsc}{}{}{}
+\makeoddfoot {jrmbsc}{}{}{}
+
+% Black magic happens below!
+\makeatletter
+\makepsmarks {jrmbsc}{
+  % Syntax: \createmark{<division type}{left|right|both marks}{shownumber|nonumber}{prefix}{postfix}
+  \createmark{chapter}    {both}  {shownumber} {\@chapapp\ } {\ $\cdot$\ }
+  \createmark{section}    {right} {shownumber} {}            { \ }
+%  \createmark{subsection} {right} {nonumber}   {}            {}
+  \createplainmark{toc}   {both}  {\contentsname}
+  \createplainmark{lof}   {both}  {\listfigurename}
+  \createplainmark{lot}   {both}  {\listtablename}
+  \createplainmark{bib}   {both}  {\bibname}
+  \createplainmark{index} {both}  {\indexname}
+}
+\makeatother
+\nouppercaseheads
+
+% Sections
+\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+
+% Fix of the chapter-pages
+\copypagestyle{chapter}{empty}
+\makeoddfoot{chapter}{}{\foliofont\thepage}{}
+\makeevenfoot{chapter}{}{\foliofont\thepage}{}
+
+% Chapterstyle (modified from Rasmus Villemoes great thesis)
+\usepackage{graphicx}
+\makechapterstyle{jrmbsc}{% requires graphicx package
+  \chapterstyle{default}
+  \renewcommand*{\chapnamefont}{%
+    \normalfont\LARGE\color{black}\scshape\raggedleft}
+  \renewcommand*{\chaptitlefont}{%
+    \normalfont\Huge\color{black}\sffamily\raggedleft}
+  \renewcommand*{\chapternamenum}{}
+  \renewcommand*{\printchapternum}{%
+    \makebox[0pt][l]{\hspace{0.4em}
+      \resizebox{!}{5ex}{%
+        \normalfont\Large\color{red}\thechapter}
+    }%
+  }%
+  \renewcommand*{\afterchapternum}{%
+    \par\hspace{1.5cm}\color{black}\hrule\vskip\midchapskip}}
+
+% Use the new pagestyle and chapterstyle
+\pagestyle{jrmbsc}
+\chapterstyle{jrmbsc}
+
+
+%%%%%%%%%%%%%%%%%%%%% 
+%%% End of Styles %%%
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Figures and floats %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include graphics
+% \usepackage{graphicx}  % ALREADY IMPORTED
+
+% Subfloats
+\newsubfloat{figure}
+\subcaptionstyle{\raggedright}
+
+% Width of caption
+\captionwidth{.8\linewidth}
+\changecaptionwidth
+
+% Trick to automatically end captions with a period
+\captiontitlefinal{.}
+
+% Cool tables with footnotes
+\usepackage{threeparttable, etoolbox}
+\appto\TPTnoteSettings{\footnotesize}  % Requires etoolbox
+
+% Default path
+\graphicspath{{./figures/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Figures and floats %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+%%% Pretty stuff %%%
+%%%%%%%%%%%%%%%%%%%%
+% Colors (move up if to be used in the pagestyle!)
+% \usepackage{xcolor}  % ALREADY IMPORTED
+\definecolor{zen-red}{HTML}{B23333}    \definecolor{zen-orange}{HTML}{E57A33}
+\definecolor{zen-yellow}{HTML}{F0DFAF} \definecolor{zen-green}{HTML}{5F7F5F}
+\definecolor{zen-cyan}{HTML}{93E0E3}   \definecolor{zen-blue}{HTML}{336CB2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Pretty stuff %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Science packages %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic math
+\usepackage{amsmath}
+
+% Bad-ass math!
+\usepackage{mathtools}
+% \mathtoolsset{showonlyrefs=false,showmanualtags}
+\mathtoolsset{showonlyrefs=true}  % If only to show numbers on ref'ed eq's
+
+% Sætninger og beviser (opsætning længere nede)
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+% Units
+\usepackage{siunitx}
+%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Science %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%
+%%% Stuff %%%
+%%%%%%%%%%%%%
+% Spacing
+\usepackage{xspace}
+
+% Debugging
+\usepackage{lipsum}
+\usepackage[margin,draft]{fixme} \fxusetheme{color}
+% \fxnote (grøn), \fxerror (gul), \fxwarning (orange), \fxfatal (rød)
+
+% Front page and colophon
+\usepackage{soul}
+\sodef\spread{}{.2em}{.9em plus.4em}{1em plus.1em minus.1em}
+\newcommand{\packagename}[1]{\texttt{#1}}
+
+% Things with draft
+\usepackage{ifdraft}
+\usepackage[firstpage]{draftwatermark}
+
+% Nice itemizations
+\usepackage{enumitem}
+% \firmlists  % Activate firmlists everywhere?
+
+% Multiple abstracts (dirty hack?)
+\newenvironment{multiabstract}[1]
+{\renewcommand{\abstractname}{#1}\begin{abstract}}
+	{\end{abstract}}
+%%%%%%%%%%%%%%%%%%%% 
+%%% End of Stuff %%%
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%
+%%% References %%%
+%%%%%%%%%%%%%%%%%%
+% Smart quotations
+\usepackage{csquotes}
+
+% URL's
+\usepackage{url}
+
+% Bibliography
+\usepackage[backend=biber,
+%style=numeric,  % Citation style as [NUMBER]
+style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
+sorting=nyt,     % Sort NAME-YEAR-TITLE
+sortcites=true,
+dashed=false,
+maxcitenames=2,
+maxbibnames=5,
+uniquelist=false,
+doi=false,
+url=false,
+isbn=false,
+eprint=false,
+hyperref=true]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Space in bibliography
+\setlength\bibitemsep{1.5\itemsep}
+
+% Change bib-order
+\DeclareNameAlias{sortname}{last-first}
+
+% Et al. på dansk
+\DefineBibliographyStrings{danish}{%
+  andothers = {et\addabbrvspace al\adddot}
+}
+
+% Title of bibliography and entry in toc
+\defbibheading{memoirbib}[Litteraturliste]{%
+  \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
+
+
+% Referencing packages (needs to be loaded in this order!)
+\usepackage{refcount}  % Maybe needed?
+\usepackage{varioref}
+\usepackage[
+  unicode=true,
+  pdftitle={\projecttitle},
+  pdfauthor={Jakob R. Mosumgaard},  % Change this name!
+  pdfkeywords={},
+  bookmarksopen=true
+  pdfdisplaydoctitle=true,
+  ]{hyperref}
+\usepackage{cleveref}
+% Brug \cref{}  eller \Cref{} .
+
+% Hyperref setup (from Rasmus Villemoes)
+\makeatletter
+\@ifpackageloaded{hyperref}{
+%  \ifprint
+    \hypersetup{colorlinks=false,
+      pdfborder=0 0 0}
+%  \else
+%    \hypersetup{colorlinks=true, linkcolor=zen-red,
+%      citecolor=zen-green, urlcolor=zen-orange}
+%  \fi
+  \addto\extrasenglish{ % What does this do???
+    \renewcommand\subsectionautorefname{Subsection}%
+    \renewcommand\sectionautorefname{Section}%
+    \renewcommand\chapterautorefname{Chapter}%
+    \renewcommand\equationautorefname{equation}%
+  }
+}{}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of References %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Science setup %%%
+%%%%%%%%%%%%%%%%%%%%%
+% Units
+\sisetup{separate-uncertainty=true}
+\DeclareSIUnit\year{yr}
+
+% Delimeters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}  % Absolute value
+\DeclarePairedDelimiter\norm{\langle}{\rangle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Science setup %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+%%% Theorems %%%
+%%%%%%%%%%%%%%%%
+% Definition af sætning, lemma og korollar med fortløbende numerering
+\newtheorem{thm}{Sætning}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Korollar}
+\newtheorem{defi}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{remark}[thm]{Bemærkning}
+
+% Definition af bevis og bevis for
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\itshape\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\square}}
+\theoremseparator{.}
+\newtheorem{proof}{Bevis}
+
+\theoremstyle{empty}
+\theoremheaderfont{\normalfont\itshape\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\square}}
+\theoremseparator{.}
+\newtheorem{proofof}{}
+
+% Nummerering mht. hvilken section vi er i
+\numberwithin{thm}{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Theorems %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%
+%%% Macros %%%
+%%%%%%%%%%%%%%
+% Small division
+\newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
+
+% Seperation in equation
+\newcommand\eqsep{\ensuremath{\quad , \quad}}
+
+% Diff
+\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
+
+% Nice subscript
+\newcommand\hest[2]{\ensuremath{#1_{\textup{#2}}}\xspace}
+
+% Vectors (we are doing physics!)
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% End of Macros %%%
+%%%%%%%%%%%%%%%%%%%%%

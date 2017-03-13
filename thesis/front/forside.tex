@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  Speciale                 %%
+%%        (c) Jakob Rørsted Mosumgaard       %%
+%%                                           %%
+%%                  Forside                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlingpage}
+  \newlength{\frontpagecorrection}
+  \calccentering{\frontpagecorrection}
+  \begin{adjustwidth*}{\frontpagecorrection-2cm}{-\frontpagecorrection-2cm}
+    
+    \centering
+    \scshape
+    
+	{\fontsize{22pt}{26pt}\selectfont\spread{Dansk Titel}} \par
+
+	\vspace{0.5cm}	
+	
+	{\fontsize{14pt}{18pt}\selectfont\spread{English Title}} \par
+
+    \vspace{2cm}
+    
+ 	\includegraphics[height=7cm]{front/segla1b}
+    
+    \vspace{2cm}
+
+    \fontsize{16pt}{20pt}\selectfont
+    \spread{Fornavn Efternavn}\par
+    \spread{20xxxxxx}\par
+
+    \bigskip
+    
+    \fontsize{14pt}{18pt}\selectfont
+    \spread{Specialeafhandling i Statistik}\par
+    \spread{Juni 2017}\par
+    
+    \vfill
+    
+    Vejleder: XXX \par
+    % \href{http://pure.au.dk/portal/da/persons/id(XXX).html}{NAVN} \par
+    
+    \vfill
+    
+    \fontsize{12pt}{14.5pt}\selectfont
+    \href{http://www.math.au.dk/}{Institut for Matematik}\par
+    \href{http://www.au.dk/}{Aarhus Universitet}
+  \end{adjustwidth*}
+  
+    \newpage
+    \begin{adjustwidth*}{\frontpagecorrection}{-\frontpagecorrection}
+    	\thispagestyle{empty}
+    	\strut
+    	\setlength{\parindent}{0pt}
+    	\addtolength{\parskip}{.6em}
+    	
+    	\vfill
+    	
+    	\begin{center}
+    		\bfseries\sffamily Kolofon
+    	\end{center}
+    	
+    	\makeatletter
+    	\edef\fontandleading{\@memptsize.0/\the\baselineskip}
+    	\makeatother
+    	
+    	\small
+    	
+    	\textsl{\projecttitle}
+    	
+    	{---\textsl{\projecttitleenglish}}
+    	
+    	\smallskip
+    	
+    	Specialeafhandling af NAVN. Skrevet under
+        vejledning af XXX, Institut for Matematik, Aarhus Universitet.
+    	
+    	Produceret af forfatteren med \LaTeX{} og \textsf{memoir}
+        dokumentklassen. Teksten er sat med Linux Libertine
+        {\fontandleading}, samt brug af NewTX Math og Linux
+        Biolinum.
+    	
+    	Trykt på Aarhus Universitet.
+    	
+    \end{adjustwidth*}
+    
+\end{titlingpage}
