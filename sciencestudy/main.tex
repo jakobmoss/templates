@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%               Videnskabsteori             %%
+%%                                           %%
+%%              Made for pdfLaTeX            %%
+%%                                           %%
+%%                   Master                  %%
+%%                                           %%
+%%  Original preamble af:                    %%
+%%     Jakob Rørsted Mosumgaard              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokumentklassen (memoir, duh!).
+% Sproget kan ændres til 'british' hcis det ønskes
+\documentclass[a4paper, oneside, 11pt, article, danish]{memoir}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preamblen indlæses (heri kan man sagtens ændre ting)
+\input{preamble}
+
+% Indlæsning af bibliografi
+% Der er lavet med BibLaTeX og skal bygges med 'biber' (og *ikke* bibtex)!
+\input{loadbib}
+\addbibresource{bibliography.bib}
+
+% Information for maketitle
+\author{FORNAVN EFTERNAVN}
+\title{NOGET OM VIDENSKABSTEORI}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+% Indholdsfortegnelse ?
+% \tableofcontents*
+
+\noindent Ifølge \textcite{asteroseismology} svinger Solen! Her kommer kloge ord
+på latinsk:
+
+\lipsum[30]
+
+\begin{align}
+  F = m a
+\end{align}
+
+% Bibliografi med brugerdefineret navn (kan sættes i 'loadbib.tex')
+\raggedyright[4em] \printbibliography[heading=memoirbib]
+
+
+
+\end{document}

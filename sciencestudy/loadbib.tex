@@ -1,0 +1,35 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       Preamble extension -- BibLaTeX      %%
+%%        (c) Jakob Rørsted Mosumgaard       %%
+%%                                           %%
+%%              Made for pdfLaTeX            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+\usepackage[backend=biber,
+style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
+sorting=nyt,     % Sort NAME-YEAR-TITLE
+sortcites=true,
+dashed=false,
+maxcitenames=2,
+maxbibnames=3,
+uniquelist=false,
+doi=false,
+url=false,
+isbn=false,
+eprint=false,
+hyperref=true]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Space in bibliography
+\setlength\bibitemsep{1.5\itemsep}
+
+% Change bib-order
+\DeclareNameAlias{sortname}{last-first}
+
+% Et al. på dansk
+\DefineBibliographyStrings{danish}{%
+  andothers = {et\addabbrvspace al\adddot}}
+
+% Title of bibliography and entry in toc
+\defbibheading{memoirbib}[Referencer]{%
+  \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
