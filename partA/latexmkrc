@@ -1,2 +1,6 @@
+# Use pdf as output
 $pdf_mode = 1;
-$pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
+
+# Move comment character to activate shell-escape
+$pdflatex = 'pdflatex -interaction=nonstopmode';
+# $pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
