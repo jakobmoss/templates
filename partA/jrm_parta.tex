@@ -1,0 +1,109 @@
+%% ============================================================================
+%%
+%%  Part A / PhD Progress Report
+%%
+%%  Author: Jakob Rørsted Mosumgaard
+%%
+%%  IMPORTANT: Compile with pdfLaTeX+biber !
+%%
+%%  Remarks:
+%% - Needs to be executed with '--shell-escape' if the minted-package is used!
+%%
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preamble and input control
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Use memoir!
+\documentclass[%
+final,
+11pt,
+% openright,
+openany,
+twoside,
+british,
+a4paper
+]{memoir}
+
+% Global definition: Name of the project (e.g. for the headers)
+\newcommand{\projecttitle}{Average Coffee Consumption by Graduate Students}
+
+% Read the actual preamble
+\input{preamble}
+
+% Uncomment to include all  -->  Ugly hack, I know !
+\renewcommand\includeonly[1]{}
+
+% Which files to compile
+\includeonly{%
+  front/frontpages,
+  main/intro,
+  main/future,
+}
+
+% Make the fixme-package silent to avoid cluttering of the terminal output
+% --> Comment-out to see the FiXme Summary as well as individual logs of
+%     error/warning/fatal notes
+% \fxsetup{silent}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Contents
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+% ~~~~~~~~~~~
+% Frontmatter
+% ~~~~~~~~~~~
+
+% No frontmatter command to properly count pages for this specific report
+% \frontmatter
+
+% Frontpage and abstract
+\include{front/frontpages}
+
+% List of fixme-notes -- REMEMBER TO REMOVE!
+%  --> When removed, things will end on the correct pages
+% \listoffixmes
+
+% Table of contents manually aligned with abstract
+\clearpage
+% \tableofcontents*
+{\addtolength{\beforechapskip}{-2\baselineskip}\tableofcontents*}
+
+
+% ~~~~~~~~~~~
+% Mainmatter
+% ~~~~~~~~~~~
+
+% Since frontmatter is not set, no need to set mainmatter
+% \mainmatter
+
+% Introduction
+\include{main/intro}
+
+% Future work
+\include{main/future}
+
+
+%
+% Bibliography and such stuff
+%
+\clearpage
+
+% Change the sorting of references to NAME-YEAR-TITLE (see preamble for details)
+\begin{refcontext}[sorting=nyt]
+  \raggedyright[4em] \printbibliography
+  %
+  % If you really want to compress the bibliography...
+  % \raggedyright[4em] {\addtolength{\beforechapskip}{-6\baselineskip}\printbibliography}
+\end{refcontext}
+
+
+%
+% Appendix
+%
+%\appendix
+%\include{app/app}
+
+\end{document}
