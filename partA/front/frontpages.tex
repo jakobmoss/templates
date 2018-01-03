@@ -1,0 +1,115 @@
+%% ============================================================================
+%%
+%%  Part A / PhD Progress Report
+%%
+%%  Author: Jakob Rørsted Mosumgaard
+%%
+%%  Front page, abstract and colophon
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% The title page
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Try to get rid of the blank verso
+% --> Source: tex.stackexchange.com/questions/227711
+\AtBeginShipoutNext{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+% The actual front page
+\begin{titlingpage}
+  \newlength{\frontpagecorrection}
+  \calccentering{\frontpagecorrection}
+  \begin{adjustwidth*}{\frontpagecorrection-2cm}{-\frontpagecorrection-2cm}
+
+    \centering
+    \sffamily
+
+    \vspace*{0.1cm}
+
+    \fontsize{26pt}{29pt}\selectfont
+
+    \projecttitle \par
+
+    \vspace{0.8cm}
+
+    \fontsize{18pt}{22pt}\selectfont
+
+    John Doe \par
+
+    \vspace{2.7cm}
+
+    \includegraphics[width=5cm]{front/segla1b}
+%    \includegraphics[width=5cm]{figures/sac_trim}
+
+    \vspace{2.7cm}
+
+    PhD Progress Report
+
+    \vspace{1.0cm}
+
+    \fontsize{14pt}{17pt}\selectfont
+
+    Department of Physics and Astronomy\par
+    Aarhus University\par
+    % Denmark
+
+    \vspace{0.3cm}
+
+    November 2017
+
+  \end{adjustwidth*}
+\end{titlingpage}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% The verso of the title page
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% We actually want the page numbering to start at 1 at the front page in order
+% to count pages for the GSST requirements !
+\setcounter{page}{2}
+
+% ~~~~~~~~
+% Abstract
+% ~~~~~~~~
+\vspace*{0.5cm}
+\section*{Abstract}
+\thispagestyle{empty}
+
+An abstract...
+
+
+% ~~~~~~~~~~~~
+% The colophon
+% ~~~~~~~~~~~~
+
+% Get font-info
+\makeatletter
+\edef\fontandleading{\@memptsize.0/\the\baselineskip}
+\makeatother
+
+% Push to bottom of page and locally set indents
+\strut\vfill
+{
+  \setlength{\parindent}{0pt}
+  \addtolength{\parskip}{.6em}
+
+  \begin{center}
+    \bfseries\sffamily Colophon
+  \end{center}
+
+  \small
+
+  \textsl{\projecttitle}
+
+  \smallskip
+
+  PhD progress report by John Doe.
+
+  The PhD project is supervised by Bob and Alice
+
+  Typeset by the author using \LaTeX{} and the \textsf{memoir} document class,
+  using Linux Libertine and Linux Biolinum {\fontandleading}.
+
+  Printed at Aarhus University
+}
