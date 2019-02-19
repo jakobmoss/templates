@@ -17,7 +17,7 @@ This only makes sense for empty buffers."
       (concat
        "\\usepackage[danish]{babel}\n"
        "\\renewcommand\\danishhyphenmins{22}\n")
-    "\\usepackage[english]{babel}\n")	
+    "\\usepackage[english]{babel}\n")
 
   (if (y-or-n-p "Load math packages? ")
       (concat
@@ -44,12 +44,12 @@ This only makes sense for empty buffers."
   "\\AtEndDocument{\\ifnum\\value{page} = 1\\thispagestyle{empty}\\fi}\n"
   "\n"
   "\\begin{document}\n"
-  
+
   "\\author{"
   (setq latex-skeleton-document-author
 	(skeleton-read "Author: " (user-full-name)))
   "}\n"
-  "\\title{" 
+  "\\title{"
   (setq latex-skeleton-document-title
 	(skeleton-read "Title: " nil))
   "}\n"
@@ -74,7 +74,7 @@ This only makes sense for empty buffers."
   "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
   "% Preamble\n"
   "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
-  "% Standard preamble\n"
+  "% Standard preamble (switch to _code, if you need syntax highlight)\n"
   "\\input{/Users/moss/templates/astrotex/preamble}\n"
 
   (if (y-or-n-p "Load BibLaTeX? ")
@@ -94,7 +94,7 @@ This only makes sense for empty buffers."
   (setq latex-skeleton-document-author
 	(skeleton-read "Author: " (user-full-name)))
   "}\n"
-  "\\title{" 
+  "\\title{"
   (setq latex-skeleton-document-title
 	(skeleton-read "Title: " nil))
   "}\n"

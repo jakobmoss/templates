@@ -1,2 +1,12 @@
+# Always PDF!
 $pdf_mode = 1;
-$pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
+
+# SELECT ONE OF THE OPTIONS BELOW
+
+# pdfLaTeX (default) ? 
+$pdflatex = 'pdflatex -interaction=nonstopmode';
+# $pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
+
+# LuaTeX (for e.g. beamer/metropolis) ?
+# $pdflatex = 'lualatex -interaction=nonstopmode';
+# $pdflatex = 'lualatex -interaction=nonstopmode -shell-escape';

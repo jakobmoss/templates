@@ -9,6 +9,7 @@ auto/
 *.fls
 *.out
 *.toc
+*.lox
 
 ## Intermediate documents:
 *.dvi

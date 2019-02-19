@@ -1,23 +1,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%       Preamble extension -- BibLaTeX      %%
-%%        (c) Jakob Rørsted Mosumgaard       %%
+%%  (c) Jakob Lysgaard Rørsted (Mosumgaard)  %%
 %%                                           %%
 %%              Made for pdfLaTeX            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography
+% Bibliography -- use biber as backend!!
+% Current setting: Citation: AUTHOR (YEAR), and NAME-YEAR-TITLE sorting
 \usepackage[backend=biber,
-style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
-sorting=nyt,     % Sort NAME-YEAR-TITLE
-sortcites=true,
-dashed=false,
-maxcitenames=2,
-maxbibnames=3,
-uniquelist=false,
-doi=false,
-url=false,
-isbn=false,
-eprint=false,
-hyperref=true]{biblatex}
+  style=authoryear-comp,
+  sorting=nyt,
+  sortcites=true,
+  dashed=false,
+  maxcitenames=2,
+  maxbibnames=3,
+  uniquelist=false,
+  doi=false,
+  url=false,
+  isbn=false,
+  eprint=false,
+  hyperref=true]{biblatex}
 \addbibresource{bibliography.bib}
 
 % Space in bibliography

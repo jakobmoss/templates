@@ -1,20 +1,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  Speciale                 %%
-%%        (c) Jakob Rørsted Mosumgaard       %%
+%%           (c) FORNAVN EFTERNAVN           %%
 %%                                           %%
 %%              Made for pdfLaTeX            %%
 %%                                           %%
 %%                   Master                  %%
 %%                                           %%
-%%  Original preamble af:                    %%
-%%     Jakob Rørsted Mosumgaard              %%
+%%  Original template/preamble:              %%
+%%     Jakob Lysgaard Rørsted (Mosumgaard)   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Documentclass and options %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Use memoir
+% Use memoir !!!
 \documentclass[%
 % final,
 11pt,
@@ -33,12 +33,12 @@ a4paper
 %%% Definitions %%%
 %%%%%%%%%%%%%%%%%%%
 
-% A quick way of accessing whether the document is for print.
+% A quick way of accessing whether the document is for print or not.
 \makeatletter
 \let\ifprint\if@twoside
 \makeatother
 
-% Name of the project
+% Name of the project defined for different
 \newcommand{\projecttitle}{Dansk Titel}
 \newcommand{\projecttitleenglish}{English Title}
 
@@ -50,7 +50,7 @@ a4paper
 %%% Preamble and control of input %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Read the preamble
+% Read the full preamble
 \input{preamble}
 
 % Uncomment to include all  -->  Ugly hack, I know !
@@ -73,7 +73,6 @@ a4paper
 %%%%%%%%%%%%%%%%
 %%% Contents %%%
 %%%%%%%%%%%%%%%%
-
 \begin{document}
 %
 % Forside
@@ -90,17 +89,17 @@ a4paper
 \frontmatter
 
 % Abstracts (på både dansk og engelsk)
-%  --> skal nok ende det rigtige sted når \listoffixmes udkommenteres
+%  --> Skal nok ende det rigtige sted når \listoffixmes udkommenteres !
 \include{front/abstract}
 
 % Forord
 \include{front/forord}
 
-% Indholdsfortegnelse (på en højreside)
+% Indholdsfortegnelse (på en højreside) der ikke indeholder sig selv
 \cleardoublepage
 \tableofcontents*
 
-% Indledning (som et egentlig kapitel, men uden nummer)
+% Indledning (som et egentligt kapitel, men *uden* nummer)
 \include{front/indledning}
 
 
@@ -134,9 +133,3 @@ a4paper
 %%%%%%%%%%%%%%%%%%%%%%%
 %%% End of contents %%%
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:

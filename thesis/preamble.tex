@@ -1,13 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  Speciale                 %%
-%%        (c) Jakob Rørsted Mosumgaard       %%
+%%           (c) FORNAVN EFTERNAVN           %%
 %%                                           %%
-%%             Made for pdfLaTeX             %%
+%%              Made for pdfLaTeX            %%
 %%                                           %%
-%%                  Preamble                 %%
+%%                   Master                  %%
 %%                                           %%
-%%  Original preamble af:                    %%
-%%     Jakob Rørsted Mosumgaard              %%
+%%  Original template/preamble:              %%
+%%     Jakob Lysgaard Rørsted (Mosumgaard)   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -28,9 +28,8 @@
 % Fonts
 % For inspiration: http://www.tug.dk/FontCatalogue/mathfonts.html
 \usepackage{libertine}            % Linux Libertine as text font
-\usepackage[libertine]{newtxmath} % Nicely scaled math font
+\usepackage{libertinust1math}     % New math support for Linux Libertine
 \usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% End of Fun with fonts %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,7 +55,6 @@
 
 % Memoir magic
 \checkandfixthelayout
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% End of Villemoes' page set-up %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,7 +62,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Styles (again Villemoes-inspired) %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % NOTE: Colors added everywhere, to make them easy to change!
 \usepackage{xcolor}
 
@@ -125,8 +122,6 @@
 % Use the new pagestyle and chapterstyle
 \pagestyle{jrmbsc}
 \chapterstyle{jrmbsc}
-
-
 %%%%%%%%%%%%%%%%%%%%%
 %%% End of Styles %%%
 %%%%%%%%%%%%%%%%%%%%%
@@ -184,7 +179,7 @@
 % Sætninger og beviser (opsætning længere nede)
 \usepackage[amsmath,thmmarks]{ntheorem}
 
-% Units
+% Units (opsætning længere nede)
 \usepackage{siunitx}
 %%%%%%%%%%%%%%%%%%%%%%
 %%% End of Science %%%
@@ -233,19 +228,19 @@
 
 % Bibliography
 \usepackage[backend=biber,
-%style=numeric,  % Citation style as [NUMBER]
-style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
-sorting=nyt,     % Sort NAME-YEAR-TITLE
-sortcites=true,
-dashed=false,
-maxcitenames=2,
-maxbibnames=5,
-uniquelist=false,
-doi=false,
-url=false,
-isbn=false,
-eprint=false,
-hyperref=true]{biblatex}
+  % style=numeric,  % Citation style as [NUMBER]
+  style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
+  sorting=nyt,     % Sort NAME-YEAR-TITLE
+  sortcites=true,
+  dashed=false,
+  maxcitenames=2,
+  maxbibnames=5,
+  uniquelist=false,
+  doi=false,
+  url=false,
+  isbn=false,
+  eprint=false,
+  hyperref=true]{biblatex}
 \addbibresource{bibliography.bib}
 
 % Space in bibliography
@@ -263,18 +258,16 @@ hyperref=true]{biblatex}
 \defbibheading{memoirbib}[Litteraturliste]{%
   \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
 
-
 % Referencing packages (needs to be loaded in this order!)
 \usepackage{refcount}  % Maybe needed?
 \usepackage{varioref}
 \usepackage[
   unicode=true,
   pdftitle={\projecttitle},
-  pdfauthor={Jakob R. Mosumgaard},  % Change this name!
+  pdfauthor={Jakob Lysgaard Roested},  % Change this name!
   pdfkeywords={},
   bookmarksopen=true
-  pdfdisplaydoctitle=true,
-  ]{hyperref}
+  pdfdisplaydoctitle=true]{hyperref}
 \usepackage{cleveref}
 % Brug \cref{}  eller \Cref{} .
 
@@ -310,7 +303,6 @@ hyperref=true]{biblatex}
 % Delimeters
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}  % Absolute value
 \DeclarePairedDelimiter\norm{\langle}{\rangle}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% End of Science setup %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
