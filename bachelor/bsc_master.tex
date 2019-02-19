@@ -1,14 +1,15 @@
 %% ============================================================================
 %%
-%%  Part A / PhD Progress Report
+%%  Bachelor's project
 %%
-%%  Author: Jakob Lysgaard Rørsted (Mosumgaard)
+%%  Author: FORNAVN EFTERNAVN
 %%
 %%  IMPORTANT: Compile with pdfLaTeX+biber !
 %%
 %%  Remarks:
-%% - Needs to be executed with '--shell-escape' if the minted-package is used!
+%%  - Needs to be executed with '--shell-escape' if the minted-package is used!
 %%
+%%  Original template/preamble: Jakob Lysgaard Rørsted (Mosumgaard)
 %% ============================================================================
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -22,12 +23,13 @@ final,
 % openright,
 openany,
 twoside,
+% danish,
 british,
 a4paper
 ]{memoir}
 
 % Global definition: Name of the project (e.g. for the headers)
-\newcommand{\projecttitle}{Coffee Consumption by Graduate Students}
+\newcommand{\projecttitle}{Coffee Consumption by Physics Students}
 
 % Read the actual preamble
 \input{preamble}
@@ -39,7 +41,7 @@ a4paper
 \includeonly{%
   front/frontpages,
   main/intro,
-  main/future,
+  main/conclusion,
 }
 
 % Make the fixme-package silent to avoid cluttering of the terminal output
@@ -59,7 +61,8 @@ a4paper
 % No frontmatter command to properly count pages for this specific report
 % \frontmatter
 
-% Frontpage and abstract
+% Frontpage and abstract (this will set the page number to count all pages)
+% If you want to let the page counter reset, go to line 71 in the file.
 \include{front/frontpages}
 
 % List of fixme-notes -- REMEMBER TO REMOVE!
@@ -82,8 +85,8 @@ a4paper
 % Introduction
 \include{main/intro}
 
-% Future work
-\include{main/future}
+% Concluding remarks
+\include{main/conclusion}
 
 
 %

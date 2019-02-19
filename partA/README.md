@@ -1,6 +1,7 @@
-# Template for a project
+# Template for a PhD progress report
 
-Suitable for e.g. a Bachelor's project or a PhD progress report.
+Suitable for a PhD progress report (also known as Part-A). Very similar to the
+format of a Bachelor's project (30 pages limit).
 
 Tip for nice compilation:
 ```

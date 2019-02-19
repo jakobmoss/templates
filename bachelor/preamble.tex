@@ -1,10 +1,12 @@
 %% ============================================================================
 %%
-%%  Part A / PhD Progress Report
+%%  Bachelor's project
 %%
-%%  Author: Jakob Lysgaard Rørsted (Mosumgaard)
+%%  Author: Jakob Rørsted Mosumgaard
 %%
 %%  Preamble
+%%
+%%  Original preamble: Jakob Lysgaard Rørsted (Mosumgaard)
 %% ============================================================================
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +34,7 @@
 % Language (has to be loaded before the fonts..?)
 \usepackage{babel}
 
-% Fonts
+% Fonts: Linux Libertine (http://www.tug.dk/FontCatalogue/linuxlibertine/)
 \usepackage{libertine}            % Linux Libertine as text font
 \usepackage{libertinust1math}     % Math support for Linux Libertine
 \usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
@@ -74,7 +76,7 @@
 \makeevenfoot{jrmbsc}{}{}{}
 \makeoddfoot {jrmbsc}{}{}{}
 
-% Black magic happens below!
+% Black magic happens below! (define pagestyle)
 \makeatletter
 \makepsmarks {jrmbsc}{
   % Syntax: \createmark{<division type}{left|right|both marks}{shownumber|nonumber}{prefix}{postfix}
@@ -93,10 +95,8 @@
 % Sections with sans-serif
 \setsecheadstyle{\Large\bfseries\sffamily\raggedright}
 \setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
-% \setsecheadstyle{\Large\sffamily\raggedright}
-% \setsubsecheadstyle{\large\sffamily\raggedright}
 
-% Fix of the chapter-pages
+% Fix of the pagestyle of the chapter-pages
 \copypagestyle{chapter}{empty}
 \makeoddfoot{chapter}{}{\foliofont\thepage}{}
 \makeevenfoot{chapter}{}{\foliofont\thepage}{}
@@ -137,7 +137,7 @@
 \newsubfloat{figure}
 \subcaptionstyle{\raggedright}
 
-% Use sans-serif for captions
+% Use sans-serif for captions (alternative layout: Change width (see below))
 \captionnamefont{\sffamily\scshape}
 \captiontitlefont{\sffamily\small}
 
@@ -161,7 +161,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Science
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Basic math
+% Basic math (might already be loaded by the math font package)
 \usepackage{amsmath}
 
 % Bad-ass math!
@@ -229,11 +229,11 @@
 % Bibliography
 \usepackage[backend=biber,
   style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
-  sorting=ynt,     % Sort citations as YEAR-NAME-TITLE
+  sorting=ynt,            % Sort citations as YEAR-NAME-TITLE
   sortcites=true,
   dashed=false,
-  maxcitenames=3,     % Increase/decrease to include more/fewer authors in cites
-  maxbibnames=3,      % As above, but in the bibliography
+  maxcitenames=3,         % Increase/decrease to include more/fewer authors in cites
+  maxbibnames=3,          % As above, but in the bibliography
   uniquelist=false,
   uniquename=false,
   doi=false,
@@ -242,14 +242,11 @@
   eprint=false,
   hyperref=true]{biblatex}
 
-% Actually apply the citation order (because bibliography sorted differently)
+% Actually apply the citation order (because the bibliography is sorted differently)
 \assignrefcontextentries[]{*}
 
-% Manual entries
+% Load the file with bibliographic information
 \addbibresource{bibliography.bib}
-
-% The one from Mendeley
-% \addbibresource{library.bib}
 
 % Space in bibliography
 \setlength\bibitemsep{1.1\itemsep}
@@ -268,8 +265,7 @@
   pdfkeywords={},
   bookmarksopen=true,
   pdfdisplaydoctitle=true,
-  hypertexnames=false,
-  ]{hyperref}
+  hypertexnames=false]{hyperref}
 \usepackage{cleveref}
 
 % Hyperref setup (from Rasmus Villemoes)
@@ -321,7 +317,6 @@
 \newcommand\eos{EoS\xspace}
 \newcommand\gar{\textsc{garstec}\xspace}
 \newcommand\Gar{\textsc{Garstec}\xspace}
-
 
 % Specific things to be repeated often in the text
 \newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
