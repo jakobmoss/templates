@@ -19,6 +19,9 @@ auto/
 # *.eps
 *.pdf
 
+## Do NOT ignorenthis specific file
+!segla1b.pdf
+
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
