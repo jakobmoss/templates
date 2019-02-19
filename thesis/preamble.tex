@@ -1,0 +1,379 @@
+%% ============================================================================
+%%
+%%  Bachelor's project
+%%
+%%  Author: FORNAVN EFTERNAVN
+%%
+%%  Preamble
+%%
+%%  Original preamble: Jakob Lysgaard Rørsted (Mosumgaard)
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Core
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Essentials
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Microtype -- Subliminal refinements towards typographical perfection
+\usepackage{microtype}
+\microtypesetup{final}
+% \microtypesetup{tracking = true}
+
+% Various tools needed in the preamble and by some packages
+\usepackage{etoolbox}
+
+% Inclusion of code
+% --> Needs to be loaded this early to avoid problems with some font packages
+% NOTE: This packages requires the Python-module 'Pygments' to be installed
+% NOTE: Fails unless this file is compiled with '--shell-escape' !
+% \usepackage{minted}
+% \usemintedstyle{friendly}
+
+% Language (has to be loaded before the fonts..?)
+% Load both languages to make two different abstracts
+\usepackage[danish,english]{babel}
+\renewcommand\danishhyphenmins{22}
+\selectlanguage{english}
+
+% Fonts: Linux Libertine (http://www.tug.dk/FontCatalogue/linuxlibertine/)
+\usepackage{libertine}            % Linux Libertine as text font
+\usepackage{libertinust1math}     % Math support for Linux Libertine
+\usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Page 'n' stuff
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Page set-up
+\setlrmarginsandblock{3.2cm}{*}{1.5}
+\setulmarginsandblock{*}{3.7cm}{1}
+
+% Some memoir tricks
+% \setlength{\topskip}{1.6\topskip}
+\checkandfixthelayout
+\sloppybottom
+\strictpagechecktrue
+
+% To remove the blank page after the titlepage to save space
+% --> Only for this progress report! Normally the blank page should be there!!
+\usepackage{atbegshi}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Page and chapter styles
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% NOTE: Colors added everywhere, to make them easy to change!
+\usepackage{xcolor}
+
+% Fonts
+\newcommand{\foliofont}{\color{black}\sffamily}
+\newcommand{\headerfont}{\color{black}\sffamily}
+
+% Make new pagestyle
+\makepagestyle{jrmbsc}
+\makeevenhead{jrmbsc}{\foliofont\thepage}    {} {\headerfont\leftmark}
+\makeoddhead {jrmbsc}{\headerfont\projecttitle} {} {\foliofont\thepage}
+\makeevenfoot{jrmbsc}{}{}{}
+\makeoddfoot {jrmbsc}{}{}{}
+
+% Black magic happens below! (define pagestyle)
+\makeatletter
+\makepsmarks {jrmbsc}{
+  % Syntax: \createmark{<division type}{left|right|both marks}{shownumber|nonumber}{prefix}{postfix}
+  \createmark{chapter}    {both}  {shownumber} {\@chapapp\ } {\ $\cdot$\ }
+  \createmark{section}    {right} {shownumber} {}            { \ }
+%  \createmark{subsection} {right} {nonumber}   {}            {}
+  \createplainmark{toc}   {both}  {\contentsname}
+  \createplainmark{lof}   {both}  {\listfigurename}
+  \createplainmark{lot}   {both}  {\listtablename}
+  \createplainmark{bib}   {both}  {\bibname}
+  \createplainmark{index} {both}  {\indexname}
+}
+\makeatother
+\nouppercaseheads
+
+% Sections with sans-serif
+\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+
+% Fix of the pagestyle of the chapter-pages
+\copypagestyle{chapter}{empty}
+\makeoddfoot{chapter}{}{\foliofont\thepage}{}
+\makeevenfoot{chapter}{}{\foliofont\thepage}{}
+
+% Chapterstyle (modified from Rasmus Villemoes thesis)
+\usepackage{graphicx}
+\makechapterstyle{jrmbsc}{% requires graphicx package
+  \chapterstyle{default}
+  \renewcommand*{\chapnamefont}{%
+    \normalfont\LARGE\color{black}\scshape\raggedleft}
+  \renewcommand*{\chaptitlefont}{%
+    \normalfont\Huge\color{black}\sffamily\raggedleft}
+  \renewcommand*{\chapternamenum}{}
+  \renewcommand*{\printchapternum}{%
+    \makebox[0pt][l]{\hspace{0.4em}
+      \resizebox{!}{5ex}{%
+        \normalfont\Large\color{black}\thechapter}
+    }%
+  }%
+  \renewcommand*{\afterchapternum}{%
+    \par\hspace{1.5cm}\color{black}\hrule\vskip\midchapskip}}
+
+% Use the new pagestyle and chapterstyle
+\pagestyle{jrmbsc}
+\chapterstyle{jrmbsc}
+
+% Turn on numbering of subsections
+\setsecnumdepth{subsection}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Floats, captions and footnotes
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Include graphics
+% \usepackage{graphicx}  % ALREADY IMPORTED
+
+% Subfloats
+\newsubfloat{figure}
+\subcaptionstyle{\raggedright}
+
+% Use sans-serif for captions (alternative layout: Change width (see below))
+\captionnamefont{\sffamily\scshape}
+\captiontitlefont{\sffamily\small}
+
+% Width of caption --> Use sf-font instead
+% \captionwidth{.8\linewidth}
+% \changecaptionwidth
+
+% Trick to automatically end captions with a period
+\captiontitlefinal{.}
+
+% Styling of the footnotes (memoir tricks)
+\setlength{\footmarkwidth}{-1sp}
+\setlength{\footmarksep}{0em}
+\footmarkstyle{#1: }
+
+% Cool tables with footnotes (using the same style as define just above)
+\usepackage[online]{threeparttable}
+\appto\TPTnoteSettings{\footnotesize}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Science
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Basic math (might already be loaded by the math font package)
+\usepackage{amsmath}
+
+% Bad-ass math!
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=false,showmanualtags}
+% \mathtoolsset{showonlyrefs=true}  % If only to show numbers on ref'ed eq's
+
+% Units
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+
+% Declaration of some nice units
+\DeclareSIUnit\au{AU}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\msun{M_{\odot}}
+\DeclareSIUnit\lsun{L_{\odot}}
+
+% Computer-related units
+\DeclareSIUnit\byte{B}
+
+% Delimeters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\langle}{\rangle}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Stuff
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Spacing in macros
+\usepackage{xspace}
+
+% Debugging
+\usepackage{lipsum}
+\usepackage[margin,draft]{fixme}
+\fxusetheme{color}
+% \fxnote (grøn), \fxerror (gul), \fxwarning (orange), \fxfatal (rød)
+
+% Front page and colophon
+\usepackage{soul}
+\sodef\spread{}{.2em}{.9em plus.4em}{1em plus.1em minus.1em}
+\newcommand{\packagename}[1]{\texttt{#1}}
+
+% Things with draft
+\usepackage[firstpage]{draftwatermark}
+\SetWatermarkText{\sffamily DRAFT}
+
+% Nice itemizations
+\usepackage{enumitem}
+% \firmlists  % Activate firmlists everywhere?
+
+% Logo
+\usepackage{metalogo}
+\setlogokern{La}{-0.265em}
+\setlogokern{aT}{-0.09em}
+\setlogokern{Te}{-0.07em}
+\setlogokern{eX}{-0.072em}
+\setlogokern{eT}{-0.056em}
+\setlogodrop{0.158em}
+
+% Multiple abstracts (dirty hack?)
+\newenvironment{multiabstract}[1]
+{\renewcommand{\abstractname}{#1}\begin{abstract}}
+{\end{abstract}}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% References
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Smart quotations
+\usepackage{csquotes}
+
+% URL's
+\usepackage{url}
+
+% Bibliography
+\usepackage[backend=biber,
+  style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
+  sorting=ynt,            % Sort citations as YEAR-NAME-TITLE
+  sortcites=true,
+  dashed=false,
+  maxcitenames=3,         % Increase/decrease to include more/fewer authors in cites
+  maxbibnames=5,          % As above, but in the bibliography
+  uniquelist=false,
+  uniquename=false,
+  doi=false,
+  url=false,
+  isbn=false,
+  eprint=false,
+  hyperref=true]{biblatex}
+
+% Actually apply the citation order (because the bibliography is sorted differently)
+\assignrefcontextentries[]{*}
+
+% Space in bibliography (change to compress/expand bibliography)
+\setlength\bibitemsep{1.3\itemsep}
+
+% Change bib-order
+\DeclareNameAlias{sortname}{last-first}
+
+% Load the file with bibliographic information
+\addbibresource{bibliography.bib}
+
+% DANISH STUFF: Et al. på dansk
+% \DefineBibliographyStrings{danish}{%
+%   andothers = {et\addabbrvspace al\adddot}
+% }
+
+% DANISH STUFF: Title of bibliography and entry in toc
+% \defbibheading{memoirbib}[Litteraturliste]{%
+%   \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
+  
+% Referencing packages (needs to be loaded in this order!)
+% --> For references, use: \cref{}  or \Cref{} !
+\usepackage{refcount}
+\usepackage{varioref}
+\usepackage[
+  unicode=true,
+  pdftitle={\projecttitle},
+  pdfauthor={John Doe},  % Change this name!
+  pdfkeywords={},
+  bookmarksopen=true,
+  pdfdisplaydoctitle=true,
+  hypertexnames=false]{hyperref}
+\usepackage{cleveref}
+
+% Hyperref setup (from Rasmus Villemoes)
+\makeatletter
+\@ifpackageloaded{hyperref}{
+  \hypersetup{colorlinks=false, pdfborder=0 0 0}
+  \addto\extrasenglish{ % What does this do???
+    \renewcommand\subsectionautorefname{Subsection}%
+    \renewcommand\sectionautorefname{Section}%
+    \renewcommand\chapterautorefname{Chapter}%
+    \renewcommand\equationautorefname{equation}%
+  }
+}{}
+\makeatother
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Theorems (add if required)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% % Sætninger og beviser (opsætning længere nede)
+% \usepackage[amsmath,thmmarks]{ntheorem}
+
+% % Definition af sætning, lemma og korollar med fortløbende numerering
+% \newtheorem{thm}{Sætning}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{cor}[thm]{Korollar}
+% \newtheorem{defi}[thm]{Definition}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{remark}[thm]{Bemærkning}
+
+% % Definition af bevis og bevis for
+% \theoremstyle{nonumberplain}
+% \theoremheaderfont{\normalfont\itshape\bfseries}
+% \theorembodyfont{\normalfont}
+% \theoremsymbol{\ensuremath{\square}}
+% \theoremseparator{.}
+% \newtheorem{proof}{Bevis}
+
+% \theoremstyle{empty}
+% \theoremheaderfont{\normalfont\itshape\bfseries}
+% \theorembodyfont{\normalfont}
+% \theoremsymbol{\ensuremath{\square}}
+% \theoremseparator{.}
+% \newtheorem{proofof}{}
+
+% % Nummerering mht. hvilken section vi er i
+% \numberwithin{thm}{chapter}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Macros
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Nice spacing in macros
+\usepackage{xspace}
+
+% Small division
+\newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
+
+% Seperation in equation
+\newcommand\eqsep{\ensuremath{\quad , \quad}}
+
+% Generic names
+\newcommand\numpy{NumPy\xspace}
+\newcommand\scipy{SciPy\xspace}
+\newcommand\kepler{\textsl{Kepler}\xspace}
+
+% Diff
+\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
+\newcommand\idiff[2]{\ensuremath{\text{d}#1/\text{d}#2}}
+
+% More lazy stuff
+\newcommand\parname[2]{\left(#1\right)_{\textup{#2}}}
+
+% Vectors (we are doing physics!)
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
+
+% Nice subscript
+\newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
+
+% Specific abbreviations and names
+\newcommand\eos{EoS\xspace}
+\newcommand\gar{\textsc{garstec}\xspace}
+\newcommand\Gar{\textsc{Garstec}\xspace}
+
+% Specific things to be repeated often in the text
+\newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
+\newcommand\logg{\ensuremath{\log g}\xspace}

@@ -1,6 +1,6 @@
 %% ============================================================================
 %%
-%%  Bachelor's project
+%%  Speciale / Master's thesis
 %%
 %%  Author: FORNAVN EFTERNAVN
 %%
@@ -16,12 +16,11 @@
 % Preamble and input control
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-% Use memoir!
+% Use memoir!!!
 \documentclass[%
-final,
+% final,
 11pt,
-% openright,
-openany,
+openright,
 twoside,
 % danish,
 british,
@@ -29,7 +28,9 @@ a4paper
 ]{memoir}
 
 % Global definition: Name of the project (e.g. for the headers)
-\newcommand{\projecttitle}{Coffee Consumption by Physics Students}
+% NOTE: The text of the front page is defined manually!
+\newcommand{\projecttitle}{Coffee Consumption by Students}
+\newcommand{\projecttitledanish}{Studerendes Kaffeindtag}
 
 % Read the actual preamble
 \input{preamble}
@@ -40,8 +41,10 @@ a4paper
 % Which files to compile
 \includeonly{%
   front/frontpages,
-  main/intro,
-  main/conclusion,
+  front/preface,
+  front/intro,
+  main/chap1,
+  main/chap2,
 }
 
 % Make the fixme-package silent to avoid cluttering of the terminal output
@@ -49,17 +52,16 @@ a4paper
 %     error/warning/fatal notes
 % \fxsetup{silent}
 
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Contents
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \begin{document}
-% ~~~~~~~~~~~
-% Frontmatter
-% ~~~~~~~~~~~
 
-% No frontmatter command to properly count pages for this specific report
-% \frontmatter
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Frontmatter (before the actual content)  [feel free to remove stuff]
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\frontmatter
 
 % Frontpage and abstract (this will set the page number to count all pages)
 % If you want to let the page counter reset, go to line 71 in the file.
@@ -67,47 +69,55 @@ a4paper
 
 % List of fixme-notes -- REMEMBER TO REMOVE!
 %  --> When removed, things will end on the correct pages
-% \listoffixmes
+\listoffixmes
 
-% Table of contents manually aligned with abstract
+% Preface (Danish: Forord)
+% [comment-out if not required]
+\include{front/preface}
+
+% Table of contents
 \clearpage
-% \tableofcontents*
-{\addtolength{\beforechapskip}{-2\baselineskip}\tableofcontents*}
+\tableofcontents*
+
+% Introduction (as an actual chapter, but *without* a number)
+% [comment-out if not required]
+\include{front/intro}
 
 
-% ~~~~~~~~~~~
-% Mainmatter
-% ~~~~~~~~~~~
-
-% Since frontmatter is not set, no need to set mainmatter
-% \mainmatter
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Mainmatter (the actual content)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mainmatter
 
 % Here the chapters are organised in individual files, but in the same folder.
+% Another option is to make one folder per chapter. This can e.g. be useful if
+% each chapter contains many figures.
 
-% Introduction
-\include{main/intro}
+% Chapter 1
+\include{main/chap1}
 
-% Concluding remarks
-\include{main/conclusion}
+% Chapter 2
+\include{main/chap2}
 
 
-%
-% Bibliography and such stuff
-%
+% ~~~~~~~~~~~~
+% Bibliography
+% ~~~~~~~~~~~~
 \clearpage
 
 % Change the sorting of references to NAME-YEAR-TITLE (see preamble for details)
 \begin{refcontext}[sorting=nyt]
+  % Standard bibliography
   \raggedyright[4em] \printbibliography
-  %
-  % If you really want to compress the bibliography...
-  % \raggedyright[4em] {\addtolength{\beforechapskip}{-6\baselineskip}\printbibliography}
+
+  % With custom title (activate in preamble)
+  % \raggedyright[4em] \printbibliography[heading=memoirbib]
 \end{refcontext}
 
 
-%
-% Appendix
-%
+% ~~~~~~~~~~
+% Appendices
+% ~~~~~~~~~~
 %\appendix
 %\include{app/app}
 
