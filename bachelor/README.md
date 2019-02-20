@@ -1,9 +1,12 @@
 # Template for a BSc project
 
-Suitable for a Bachelor's project (with strict 30 pages limit). Uses will
-conserve space by removing black pages and place new chapters on any page.
+Suitable for a Bachelor's project (with strict 30 pages limit). It will
+conserve space by removing black pages, place the abstract on the verso
+of the front page, and start new chapters on any page.
 
-Tip for nice compilation:
+Compile with standard `pdflatex`, and `biber` for the bibliography.
+
+Tip for nice compilation and auto-update of bibliography etc.:
 ```
 latexmk -pvc bsc_master.tex
 ```
