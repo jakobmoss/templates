@@ -6,26 +6,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography -- use biber as backend!!
 % Current setting: Citation: AUTHOR (YEAR), and NAME-YEAR-TITLE sorting
-\usepackage[backend=biber,
-  style=authoryear-comp,
-  sorting=nyt,
-  sortcites=true,
-  dashed=false,
-  maxcitenames=2,
-  maxbibnames=3,
-  uniquelist=false,
-  doi=false,
-  url=false,
-  isbn=false,
-  eprint=false,
-  hyperref=true]{biblatex}
-\addbibresource{bibliography.bib}
+\usepackage[%
+backend=biber,
+style=authoryear-comp,
+alldates=year,
+sorting=nyt,
+sortcites=true,
+dashed=false,
+maxcitenames=2,
+maxbibnames=3,
+uniquelist=false,
+doi=false,
+url=false,
+isbn=false,
+eprint=false,
+hyperref=true]{biblatex}
 
 % Space in bibliography
 \setlength\bibitemsep{1.5\itemsep}
 
 % Change bib-order
-\DeclareNameAlias{sortname}{last-first}
+\DeclareNameAlias{sortname}{family-given}
 
 % Title of bibliography and entry in toc
 \defbibheading{memoirbib}[References]{%
