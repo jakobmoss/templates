@@ -38,17 +38,18 @@
 \usepackage{libertine}            % Linux Libertine as text font
 \usepackage{libertinust1math}     % Math support for Linux Libertine
 \usepackage[scaled=.95]{newtxtt}  % Pretty teletype in correct size
+\linespread{1.06}                 % Due to a strict character-per-page limit
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Page 'n' stuff
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Page set-up
-\setlrmarginsandblock{3.2cm}{*}{1.5}
-\setulmarginsandblock{*}{3.7cm}{1}
+\setlrmarginsandblock{3.7cm}{*}{1.5}  % Old: {3.2cm}{*}{1.5}
+\setulmarginsandblock{*}{4.7cm}{1}    % Old: {*}{3.7cm}{1}
 
 % Some memoir tricks
-% \setlength{\topskip}{1.6\topskip}
+\setlength{\topskip}{1.6\topskip}
 \checkandfixthelayout
 \sloppybottom
 \strictpagechecktrue
