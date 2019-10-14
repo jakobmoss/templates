@@ -20,6 +20,7 @@ doi=false,
 url=false,
 isbn=false,
 eprint=false,
+natbib=true,
 hyperref=true]{biblatex}
 
 % Space in bibliography
@@ -31,3 +32,9 @@ hyperref=true]{biblatex}
 % Title of bibliography and entry in toc
 \defbibheading{memoirbib}[References]{%
   \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
+
+% Journal names
+\newcommand\aj{Astronomical Journal}
+\newcommand\apj{Astrophysical Journal}
+\newcommand\aap{Astronomy and Astrophysics}
+\newcommand\mnras{Monthly Notices of the Royal Astronomical Society}
