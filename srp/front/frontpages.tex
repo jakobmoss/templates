@@ -1,0 +1,70 @@
+%% ============================================================================
+%%
+%%  Studieretningsprojekt
+%%
+%%  Forfatter: FORNAVN EFTERNAVN
+%%
+%%  Forside
+%%
+%%  Original template: Jakob Lysgaard Rørsted (Mosumgaard)
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% The title page
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{titlingpage}
+  \newlength{\frontpagecorrection}
+  \calccentering{\frontpagecorrection}
+  \begin{adjustwidth*}{\frontpagecorrection-2cm}{-\frontpagecorrection-2cm}
+    \centering
+
+    % Switch to sans font for entire page
+    \sffamily
+
+    % Manual font size selection
+    \fontsize{26pt}{29pt}\selectfont
+    \projecttitle \par
+
+    \vspace{0.8cm}
+
+    \fontsize{18pt}{22pt}\selectfont
+    \theauthor \par
+
+    % Move all the way down. But by using on both sides of image, it get's
+    % centered in the vertical direction
+    % Alternatively, use manual distances
+    \strut\vfill
+
+    % Selct a nice image. This is just a placeholder
+    \includegraphics[width=7cm]{front/segla1b}
+
+    \strut\vfill
+
+    Studieretningsprojekt
+
+    \vspace{1.0cm}
+
+    \fontsize{14pt}{17pt}\selectfont
+    Et eller andet gymnasium\par
+
+    \vspace{0.3cm}
+
+    November 2019
+
+  \end{adjustwidth*}
+\end{titlingpage}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Abstract
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% We actually want the page numbering to start at 1 at the front page in order
+% to count pages for the requirements! Easy to disable by out-commenting the line.
+\setcounter{page}{2}
+
+
+% No number on this. Added before TOC
+\chapter*{Resum\'{e}}
+
+Et godt resum\'{e} af opgaven!

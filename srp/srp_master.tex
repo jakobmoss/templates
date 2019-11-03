@@ -1,0 +1,111 @@
+%% ============================================================================
+%%
+%%  Studieretningsprojekt (SRP)
+%%
+%%  Forfatter: FORNAVN EFTERNAVN
+%%
+%%  VIGTIGT: Compile with pdfLaTeX+biber !
+%%
+%%  Kommentarer:
+%%  - Skal køres med '--shell-escape' hvis minted-pakken bruges.
+%%
+%%  Original template/preamble: Jakob Lysgaard Rørsted (Mosumgaard)
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preamble and input control
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Use memoir!
+\documentclass[%
+final,
+12pt,       % If not conforming to a strict character, use 11pt
+openany,
+oneside,
+danish,
+a4paper
+]{memoir}
+
+% Globale definitioner til sidehoved, etc.
+\author{Fornavn Efternavn}
+\newcommand{\projecttitle}{Ret Denne Titel i Masterfilen}
+
+% Read the actual preamble
+\input{preamble}
+
+% Uncomment to include all  -->  Ugly hack, I know !
+\renewcommand\includeonly[1]{}
+
+% Which files to compile
+\includeonly{%
+  front/frontpages,
+%   main/intro,
+  main/main,
+%  main/conclusion,
+}
+
+% Make the fixme-package silent to avoid cluttering of the terminal output
+% --> Comment-out to see the FiXme Summary as well as individual logs of
+%     error/warning/fatal notes
+% \fxsetup{silent}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Contents
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+% ~~~~~~~~~~~
+% Frontmatter
+% ~~~~~~~~~~~
+
+% No frontmatter command to properly count pages for this specific report
+% \frontmatter
+
+% Frontpage and abstract (this will set the page number to count all pages)
+\include{front/frontpages}
+
+% List of fixme-notes -- REMEMBER TO REMOVE!
+%  --> When removed, things will end on the correct pages
+% \listoffixmes
+
+% Table of contents manually aligned with abstract
+\clearpage
+% \tableofcontents*
+{\addtolength{\beforechapskip}{-2\baselineskip}\tableofcontents*}
+
+
+% ~~~~~~~~~~~
+% Mainmatter
+% ~~~~~~~~~~~
+
+% Since frontmatter is not set, no need to set mainmatter
+% \mainmatter
+
+% Here the chapters are organised in individual files, but in the same folder.
+
+% Introduction
+\include{main/intro}
+
+% Hoveddel (kunne også være flere kapitler)
+\include{main/main}
+
+% Concluding remarks
+\include{main/conclusion}
+
+
+%
+% Bibliography and such stuff
+%
+\clearpage
+
+% Bibliography with custom name
+\raggedyright[4em] \printbibliography[heading=memoirbib]
+
+
+%
+% Appendix
+%
+%\appendix
+%\include{app/app}
+
+\end{document}
