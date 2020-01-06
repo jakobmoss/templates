@@ -60,7 +60,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Page and chapter styles
+% Udseende af sidehoved og -fod, samt kapiteloverskrifter
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Genvej til nogle fonte (fjern \small, hvis det bliver for småt)
 \newcommand{\foliofont}{\small\sffamily}
@@ -69,16 +69,14 @@
 % Lav en new og simpel pagestyle (kun odd da enkeltsidet)
 \makepagestyle{jlrsrp}
 \makeoddhead {jlrsrp}{\headerfont\theauthor} {} {\headerfont\projecttitle}
-\makeoddfoot {jlrsrp}{}{\foliofont\thepage\ / \thelastpage}{}
+\makeoddfoot {jlrsrp}{}{\foliofont Side \thepage\ af \thelastpage}{}
 
 % Skriv afsnit med en ikke-serif font
 \setsecheadstyle{\Large\bfseries\sffamily\raggedright}
 \setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
 
-% Sørg for at kapiterlsiderne opfører sig ordentligt (even er redundant)
-\copypagestyle{chapter}{empty}
-\makeoddfoot{chapter}{}{\foliofont\thepage}{}
-\makeevenfoot{chapter}{}{\foliofont\thepage}{}
+% Tilføj også sidefod til kapitelsiderne, men udelad helt sidehoveder.
+\makeoddfoot{plain}{}{\foliofont Side \thepage \ af \thelastpage}{}
 
 % Pæne kapitler
 \usepackage{graphicx}
