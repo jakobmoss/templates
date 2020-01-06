@@ -62,10 +62,9 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Page and chapter styles
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-% Genvej til nogle skriftstørrelser
-\newcommand{\foliofont}{\color{black}\sffamily}
-\newcommand{\headerfont}{\color{black}\sffamily}
+% Genvej til nogle fonte (fjern \small, hvis det bliver for småt)
+\newcommand{\foliofont}{\small\sffamily}
+\newcommand{\headerfont}{\small\sffamily}
 
 % Lav en new og simpel pagestyle (kun odd da enkeltsidet)
 \makepagestyle{jlrsrp}
@@ -86,18 +85,18 @@
 \makechapterstyle{jrmbsc}{% requires graphicx package
   \chapterstyle{default}
   \renewcommand*{\chapnamefont}{%
-    \normalfont\LARGE\color{black}\scshape\raggedleft}
+    \normalfont\LARGE\scshape\raggedleft}
   \renewcommand*{\chaptitlefont}{%
-    \normalfont\Huge\color{black}\sffamily\raggedleft}
+    \normalfont\Huge\sffamily\raggedleft}
   \renewcommand*{\chapternamenum}{}
   \renewcommand*{\printchapternum}{%
     \makebox[0pt][l]{\hspace{0.4em}
       \resizebox{!}{5ex}{%
-        \normalfont\Large\color{black}\thechapter}
+        \normalfont\Large\thechapter}
     }%
   }%
   \renewcommand*{\afterchapternum}{%
-    \par\hspace{1.5cm}\color{black}\hrule\vskip\midchapskip}}
+    \par\hspace{1.5cm}\hrule\vskip\midchapskip}}
 
 % Aktiver pagestyle og chapterstyle
 \pagestyle{jlrsrp}
