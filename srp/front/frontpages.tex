@@ -4,24 +4,27 @@
 %%
 %%  Forfatter: FORNAVN EFTERNAVN
 %%
-%%  Forside
+%%  Forside og abstract
 %%
 %%  Original template: Jakob Lysgaard Rørsted (Mosumgaard)
 %% ============================================================================
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% The title page
+% Selve forsiden
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{titlingpage}
+
+  % Vi laver en korrektion, så indholdet er placeret præcis i midten af siden
+  % --> Egentlig ikke nøvendigt for enkeltsidet layout
   \newlength{\frontpagecorrection}
   \calccentering{\frontpagecorrection}
   \begin{adjustwidth*}{\frontpagecorrection-2cm}{-\frontpagecorrection-2cm}
     \centering
 
-    % Switch to sans font for entire page
+    % Kun sans serif font
     \sffamily
 
-    % Manual font size selection
+    % Vælg specific fontstørrelse
     \fontsize{26pt}{29pt}\selectfont
     \projecttitle \par
 
@@ -30,12 +33,12 @@
     \fontsize{18pt}{22pt}\selectfont
     \theauthor \par
 
-    % Move all the way down. But by using on both sides of image, it get's
-    % centered in the vertical direction
-    % Alternatively, use manual distances
+    % Denne kommando skubber indholdet helt ned i bunden. Ved at bruge den på
+    % begge sider af billedet, bliver det placeret i midten af den lodrette
+    % akse
     \strut\vfill
 
-    % Selct a nice image. This is just a placeholder
+    % Vælg et flot billede. Dette er kun et eksempel
     \includegraphics[width=7cm]{front/segla1b}
 
     \strut\vfill
@@ -59,12 +62,12 @@
 % Abstract
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-% We actually want the page numbering to start at 1 at the front page in order
-% to count pages for the requirements! Easy to disable by out-commenting the line.
+% Vi ønsker at sidetallet starter fra 1 på forsiden. Hvis ikke dette ønskes, så
+% skal linjen bare udkommenteres.
 \setcounter{page}{2}
 
 
-% No number on this. Added before TOC
+% Intet nummer her. Indsat før indholdsfortegnelsen.
 \chapter*{Resum\'{e}}
 
 Et godt resum\'{e} af opgaven!
