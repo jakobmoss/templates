@@ -1,0 +1,382 @@
+%% ============================================================================
+%%
+%%  Slides til BEGIVENHED
+%%
+%%  Forfatter: FORNAVN EFTERNAVN
+%%
+%%  Vigtigt: Kan compiles med Lua(La)TeX (foretrukket) eller pdf(La)TeX!
+%%
+%%  Bemærkninger:
+%%  - Kræver Fira Sans font familien, hvis der compiles med LuaTeX!
+%%  - Hvis der skal inkluderes kode, brug da '--shell-escape' (minted-pakken)!
+%%
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preamble
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~
+% Documentclass
+% ~~~~~~~~~~~~~
+% Kræv etoolbox *før* dokumentklassen indlæses!
+% Denne smarte pakke gør det muligt at definere switches/toggles
+\RequirePackage{etoolbox}
+
+% Start med at vælge handouts eller almindelige slides!!!
+% ( wiki.bath.ac.uk/display/latextricks/Making+handouts+from+your+beamer+presentation )
+% ( maths.dur.ac.uk/~sxwc62/blog/2018/latexhandouts/ )
+% ( tex.stackexchange.com/questions/292531/ )
+\newtoggle{handoutmode}
+% \toggletrue{handoutmode}
+
+% Indlæs beamerklassen med passende options
+\iftoggle{handoutmode}{%
+  \documentclass[handout]{beamer}
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+}{%
+  \documentclass{beamer}
+}
+
+% Combinationen af etoolbox (toggles) og ifluatex gør os i stand til at checke
+% om der compiles med LuaTeX eller 'almindelig' pdfTeX. Hvis det første er
+% tilfældet aktiveres Fira Sans som font og andre gode sager.
+\usepackage{ifluatex}
+\newtoggle{fancyfont}
+\ifluatex
+\toggletrue{fancyfont}
+\else
+\togglefalse{fancyfont}
+\fi
+
+
+% ~~~~~~~~~~~~~~~~
+% Beamer og layout
+% ~~~~~~~~~~~~~~~~
+% Forskelle på Lua-/XeTeX og pdfTeX. Det drejer sig om pakken til dansk
+% orddeling og begreber, samt håndtering af æ, ø og å
+\iftoggle{fancyfont}{%
+  % luatex
+  \usepackage{polyglossia}
+  \setdefaultlanguage{danish}
+}{%
+  % pdftex
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[danish]{babel}
+}
+
+% Indstilling af dansk orddeling
+\renewcommand{\danishhyphenmins}{22}
+
+% Brug Metropolis beamer theme (!) og microtype
+\usetheme[block=fill]{metropolis}
+\usepackage[final]{microtype}
+% \usepackage[draft]{microtype}
+
+
+% ~~~~~~~~~~~
+% Math layout
+% ~~~~~~~~~~~
+% Specificer beamer font-theme (nødvendig for mathspec)
+\usefonttheme{professionalfonts}
+
+% Brug også theme-font til matematik (i vægten 'light')
+% Bemærk at metropolis også sætter hovedfonten til Fira Sans Light, men det skal
+% (åbenbart!) gøres igen, for at det har en effekt.
+\iftoggle{fancyfont}{%
+  % luatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Fira Sans Light}
+  \setmathfont{TeX Gyre Pagella Math}[Scale=MatchLowercase]  % Fallback
+  \setmathfont{Fira Sans Light}[range={up/{num,latin,Latin,greek,Greek},%
+    \mathexclam,\mathplus,\pm,\div,\minus,\mathpercent,\mathampersand,%
+    \mathquestion,\mathatsign,\increment,\less,\equal,\greater,\ne,\leq,%
+    \geq,\matheth,\ell,\partial},%
+  Script=Latin,script-features={}, sscript-features={}]
+  \setmathfont{Fira Sans Light Italic}[range={it/{latin,Latin,greek,Greek}},%
+  Script=Latin, script-features={}, sscript-features={}]
+  \setmonofont[Scale=MatchLowercase,BoldFont={Fira Mono Medium}]{Fira Mono}
+  % \newfontfamily\docfont[Scale=MatchLowercase]{Linux Libertine O}
+  \newfontfamily\docfont[Scale=MatchLowercase]{Arno Pro}
+  \newcommand{\whichtex}{\LuaTeX}
+}{
+  % pdftex
+  \usepackage[default]{raleway}
+  \usepackage[scaled=.95]{newtxtt}
+  \newcommand{\whichtex}{pdf\TeX}
+}
+
+
+
+% ~~~~~~~~
+% Science!
+% ~~~~~~~~
+% Den sædvanlige matematik
+\usepackage{amsmath,mathtools}
+
+% Specificer beamer font-theme (nødvendig for mathspec)
+\usefonttheme{professionalfonts}
+
+% Enheder
+\usepackage{siunitx}
+
+% Kemi
+\usepackage[version=4]{mhchem}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~
+% Fremvisning af syntax
+% ~~~~~~~~~~~~~~~~~~~~~
+% Inclusion af kode med fleksibel highlight
+% NB: Kræver at Python-modulet 'Pygments' er installeret
+% NF: Fejler, hvis ikke der compiles med '--shell-escape' !
+% \usepackage{minted}
+% \usemintedstyle{friendly}
+% \setminted[latex]{autogobble=true,highlightcolor=alertbg}
+
+
+% ~~~~~~~~~~~~~~~~~~
+% Farver og lignende
+% ~~~~~~~~~~~~~~~~~~
+% Definition af nogle farver
+\usepackage{xcolor}
+\definecolor{alertcol}{HTML}{EB811B}   % Taget direkte fra Metropolis-temaet
+\definecolor{mDarkTeal}{HTML}{23373b}  % Taget direkte fra Metropolis-temaet
+\definecolor{codebg}{RGB}{228,230,231}
+\colorlet{alertbg}{alertcol!30}
+\definecolor{mintedblue}{RGB}{64,112,161}
+\definecolor{mintedgreen}{RGB}{0,112,33}
+
+% Den almindelige 'exampleblock'-farve er lidt svær at læse...
+\setbeamercolor{example text}{%
+  fg=mintedblue
+}
+
+% Baggrunden på 'standout' er normalt inverteret, derfor snyder vi lige lidt.
+% Bemærk, at det ikke bare er muligt at skifte metropolis-tema-farve fra lys til
+% mørk og tilbage igen; på grund af en bug forbliver teksten efterfølgende hvid,
+% på hvid baggrund!
+\newcommand{\tipslide}[2]{%
+  \begin{frame}
+    \begin{center}
+      {\Large\bfseries {#1}: \alert{#2}}
+    \end{center}
+  \end{frame}
+}
+
+
+% ~~~~~~~
+% Blandet
+% ~~~~~~~
+% Quotes
+\usepackage[danish=guillemets]{csquotes}
+
+% Webpages
+\usepackage{url}
+
+% Lav om på lister uden brug af enumitem, for den forstyrrer beamer meget!
+%( tex.stackexchange.com/questions/240376 )
+\setbeamersize{description width=2.2cm}
+
+% Latinsk tekst
+\usepackage{lipsum}
+
+% Flotte tabeller
+\usepackage{booktabs}
+
+
+% ~~~~~~~~~~~~
+% Lidt makroer
+% ~~~~~~~~~~~~
+% Emulering af smart makro fra memoir
+\newcommand{\plainbreak}[1]{\vspace{#1\baselineskip}}
+
+% Tilføj kilder på en smart måde i hhv. ventre og højre nederste hjørne
+\usepackage[absolute,overlay]{textpos}
+\setbeamerfont{framesource}{size=\tiny}
+\newcommand{\lsource}[2][]{%
+  \begin{textblock*}{4cm}(0.4cm,8.6cm)
+    \begin{beamercolorbox}[ht=0.5cm,left]{framesource}
+      \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} {#1} {#2}
+    \end{beamercolorbox}
+  \end{textblock*}
+}
+\newcommand{\rsource}[2][]{%
+  \begin{textblock*}{4cm}(8.4cm,8.6cm)
+    \begin{beamercolorbox}[ht=0.5cm,right]{framesource}
+      \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} {#1} {#2}
+    \end{beamercolorbox}
+  \end{textblock*}
+}
+
+% Links til ressourcer
+\newcommand\mygithub{\url{https://github.com/jakobmoss/templates}}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Dokument
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Titel, forfatter, etc.
+\title{Her er en titel}
+\subtitle{\small Måske en undertitel}
+\author{Jakob Lysgaard Rørsted}
+\date{\today}
+\institute{%
+  Aarhus Universitet
+}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~
+% Nu begynder dokumentet
+% ~~~~~~~~~~~~~~~~~~~~~~
+\begin{document}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Introduktion
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Titelslide!
+\begin{frame}[plain]
+
+  \maketitle
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Foredraget vil \dots}
+
+  \textbf{Indeholde}
+  \begin{itemize}
+  \item En generel gennemgang af \LaTeX{}
+  \item Bred introduktion til \alert{mange} emner
+  \item Små øvelser undervejs
+  \item En pause
+  \end{itemize}
+
+  % Her er et eksempel på en pause (= ''animation'')
+  \plainbreak1
+  \pause
+
+  \textbf{\textsl{Ikke} indeholde}
+  \begin{itemize}
+  \item Større projekter
+  \item Alle detaljer og muligheder
+  \item En udtømmende liste af tips og tricks
+  \end{itemize}
+
+\end{frame}
+
+
+% =============================================================================
+% DEL 1: LaTeX-101
+% =============================================================================
+% SLIDE-MED-DEL
+\begin{frame}[standout]
+  Sådan kan man lave en større inddeling med dette tema!
+\end{frame}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Afsnit
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Et eksempel på et afsnit}
+
+% SLIDE
+\begin{frame}[fragile]
+  \frametitle{Hvad har jeg lige set?}
+
+  Her i kildekoden er et eksempel på anvendelsen af beamer \emph{overlays} ved
+  brug af \verb|<..>|. Bemærk også at slides skal have et \verb|[fragile]| på,
+  hvis man vil kunne inkludere kode.
+
+  I venstre side:
+
+  \begin{description}
+  \item[Editor]<2-> Programmet du bruger til at skrive \LaTeX{}-koden i
+  \item[\alert{Kode}]<2-> Det der kaldes \LaTeX{}. Du skriver dette
+  \end{description}
+
+  \plainbreak1
+
+  Og i højre:
+  \begin{description}
+  \item[Fremviser]<3-> Programmet der viser outputtet
+  \item[\alert{Output}]<3-> Resultatet af processen; en PDF-fil
+  \end{description}
+\end{frame}
+
+
+% SLIDE med tip
+\tipslide{Dagens tip}{Compile meget ofte!}
+% Måske dagens vigtigste tip! Hvis man laver fejl i sin kode, brokker LaTeX
+% sig; jo oftere man compiler, jo mindre kode kan man nå at lave fejl i ad
+% gangen (og som vi skal se, kan LaTeX godt være lidt dårlig til at give
+% feedback [indsæt joke om forelæsere/undervisere]).
+
+
+% SLIDE
+\begin{frame}
+  \frametitle{Hvorfor bruge \LaTeX{}?}
+
+  På dette slides er overlays igen!
+
+  \textbf{Ulemper}
+  \begin{itemize}
+  \item<2-> Anderledes end fx Word
+  \item<2-> \alert{Indlæringskurven} er stejl
+  \item<2-> Tabeller og figurer \textsl{kan} være tunge at danse med
+  \end{itemize}
+
+
+  \medskip
+
+  \textbf{Fordele}
+  \begin{itemize}
+  \item<3-> Flotte dokumenter! (også med standardopsætningen)
+  \item<3-> Adskillelse af \alert{indhold og udseende}
+  \item<3-> \alert{Nemt} at håndtere referencer, indholdsfortegnelse, etc.
+  \item<3-> Meget aktivt \textsl{community}
+  \item<3-> Gratis!
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Tak for opmærksomheden}
+
+  \textbf{Flere templates (især til projekter) kan findes her:}
+  \begin{itemize}
+  \item \mygithub{}
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+% TEMPLATE FOR FIGURE-SLIDES
+% { % This is a white frame for including external figures!
+%   \setbeamercolor{background canvas}{bg=white}
+
+%   % SLIDE
+%   \begin{frame}
+%     \frametitle{TITLE}
+
+%     \begin{figure}
+%       \centering
+%       \picplot{\includegraphics[width=\textwidth]{figures/PLOT}}
+%     \end{figure}
+%   \end{frame}
+% }
+
+
+\end{document}
+
+% ~~~~~~~~~~~~~~~~~
+% Så er vi færdige!
+% ~~~~~~~~~~~~~~~~~
