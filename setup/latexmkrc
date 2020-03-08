@@ -1,12 +1,43 @@
 # Always PDF!
 $pdf_mode = 1;
 
-# SELECT ONE OF THE OPTIONS BELOW
 
-# pdfLaTeX (default) ? 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# SELECT ONE OF THE OPTIONS BELOW
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## pdfLaTeX (default) ?
 $pdflatex = 'pdflatex -interaction=nonstopmode';
 # $pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
 
-# LuaTeX (for e.g. beamer/metropolis) ?
+## LuaTeX (for e.g. beamer/metropolis) ?
 # $pdflatex = 'lualatex -interaction=nonstopmode';
 # $pdflatex = 'lualatex -interaction=nonstopmode -shell-escape';
+
+
+# ~~~~~~~~~~~~~~~
+# ADVANCED THINGS
+# ~~~~~~~~~~~~~~~
+
+## Activate the use of makeglossaries and add files to cleanup
+## --> Inspired by: tex.stackexchange.com/questions/1226
+# add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
+# add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');
+
+# sub run_makeglossaries {
+#   if ( $silent ) {
+#     system "makeglossaries -q '$_[0]'";
+#   }
+#   else {
+#     system "makeglossaries '$_[0]'";
+#   };
+# }
+
+# push @generated_exts, 'glo', 'gls', 'glg';
+# push @generated_exts, 'glo-abr', 'gls-abr', 'glg-abr';
+# push @generated_exts, 'acn', 'acr', 'alg';
+# $clean_ext .= ' %R.ist %R.xdy';
+
+
+## Also clean fixmes
+# push @generated_exts, 'lox';
