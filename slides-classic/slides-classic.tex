@@ -1,0 +1,293 @@
+%% ============================================================================
+%%
+%%  Slides til BEGIVENHED
+%%
+%%  Forfatter: FORNAVN EFTERNAVN
+%%
+%% ============================================================================
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preamble
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~
+% Documentclass
+% ~~~~~~~~~~~~~
+\documentclass[10pt,
+% handout                   % Noter + slides
+% handout, notes=only      % Kun noter
+presentation             % Kun slides
+]{beamer}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Core
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[danish]{babel}
+
+% Fonts (her er mange muligheder)
+\usepackage{kpfonts}
+\renewcommand{\ttdefault}{txtt}
+
+% Brug altid microtype
+\usepackage{microtype}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Farver og lignende (før beamer-ting)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% AU-farver
+\definecolor{auBlue}       {cmyk}{1,0.8,0,0.15}
+\definecolor{auDarkBlue}   {cmyk}{1,0.8,0,0.8}
+\definecolor{auPurple}     {cmyk}{0.7,0.7,0,0}
+\definecolor{auDarkPurple} {cmyk}{0.7,0.7,0,0.75}
+\definecolor{auCyan}       {cmyk}{0.8,0,0.4,0}
+\definecolor{auDarkCyan}   {cmyk}{0.8,0,0.4,0.75}
+\definecolor{auTeal}       {cmyk}{0.8,0,0.4,0}
+\definecolor{auDarkTeal}   {cmyk}{0.8,0,0.4,0.75}
+\definecolor{auGreen}      {cmyk}{0.6,0,1,0}
+\definecolor{auDarkGreen}  {cmyk}{0.6,0,1,0.75}
+\definecolor{auYellow}     {cmyk}{0,0.3,1,0}
+\definecolor{auDarkYellow} {cmyk}{0,0.3,1,0.75}
+\definecolor{auOrange}     {cmyk}{0,0.6,1,0}
+\definecolor{auDarkOrange} {cmyk}{0,0.6,1,0.75}
+\definecolor{auRed}        {cmyk}{0,1,1,0}
+\definecolor{auDarkRed}    {cmyk}{0,1,1,0.75}
+\definecolor{auMagenta}    {cmyk}{0,1,0,0}
+\definecolor{auDarkMagenta}{cmyk}{0,1,0,0.75}
+\definecolor{auGray}       {cmyk}{0,0,0,0.6}
+\definecolor{auDarkGray}   {cmyk}{0,0,0,1}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Beamer setup
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Indstillinger for tema
+\usetheme[compress]{Singapore}
+\usecolortheme[named=auBlue]{structure}
+\useinnertheme{circles}
+\usecolortheme{orchid}
+\setbeamertemplate{blocks}[rounded]
+\usefonttheme{serif}
+\usefonttheme{professionalfonts}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont{block title}{series*=m}
+\setbeamercolor{example text}{fg=auGreen}
+\setbeamertemplate{navigation symbols}{%
+  %\insertframenavigationsymbol%
+  %\insertsectionnavigationsymbol%
+}
+
+% Mulighed for at lave presentationsnoter til sig selv
+% \setbeameroption{show notes on second screen=right}
+
+% Change the beamer mode 'handout' (for making presenter notes)
+\mode<handout>{
+  \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+  \setbeamertemplate{footline}[page number]
+}
+% \mode<handout>{
+%   \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+%   \setbeamertemplate{footline}[page number]
+%   \setbeameroption{show notes}
+% }
+
+% Bibliography
+\setbeamertemplate{bibliography item}[text]
+
+% Vi leger lige med et automatisk outline-slide
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Oversigt}
+    \tableofcontents[currentsection]
+
+    \n{Løbende overblik.}
+  \end{frame}
+}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Science!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Den sædvanlige matematik
+\usepackage{amsmath,mathtools}
+
+% Enheder
+\usepackage{siunitx}
+
+% Kemi
+\usepackage[version=4]{mhchem}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Blandet
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Quotes
+\usepackage[danish=guillemets]{csquotes}
+
+% Webpages
+\usepackage{url}
+
+% Lav om på lister uden brug af enumitem, for den forstyrrer beamer meget!
+%( tex.stackexchange.com/questions/240376 )
+\setbeamersize{description width=2.2cm}
+
+% Latinsk tekst
+\usepackage{lipsum}
+
+% Flotte tabeller
+\usepackage{booktabs}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Makroer
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Presenter notes
+\newcommand{\n}[1]{\note[item]{#1}}
+\newcommand{\nxt}[1]{\n{{\color{red}\itshape #1}}}
+
+% Emulate the memoir-command
+\newcommand{\plainbreak}[1]{\vspace{#1\baselineskip}}
+
+% Folder for figures
+\newcommand{\postfig}{figures/}
+
+% Quotation
+\newcommand{\citat}[2]{%
+  \begin{exampleblock}{}
+    {\large ``#1''}
+    \vskip5mm
+    \hspace*\fill{\small--- #2}
+  \end{exampleblock}
+}
+\newcommand{\citatx}[1]{%
+  \begin{exampleblock}{}
+    \vspace*{.7em}
+    {\large ``#1''}
+    \vspace*{.7em}
+  \end{exampleblock}
+}
+
+% Lidt tricks til highlight
+\setbeamercolor{alerted text}{fg=auRed,bg=}
+  
+% Påsætning af figur-kilder
+\usepackage[absolute,overlay]{textpos}
+\setbeamercolor{framesource}{fg=gray}
+\setbeamerfont{framesource}{size=\tiny}
+\newcommand{\source}[1]{%
+  \begin{textblock*}{4cm}(8.7cm,8.6cm)
+    \begin{beamercolorbox}[ht=0.5cm,right]{framesource}
+      \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} Kilde: {#1}
+    \end{beamercolorbox}
+  \end{textblock*}
+}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Dokument
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Titel, forfatter, etc.
+\title{Her er en titel}
+\subtitle{\small Måske en undertitel}
+\author{Fornavn Efternavn}
+\date{\today}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Nu begynder dokumentet
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{document}
+
+
+% Forside (laves her manuelt)
+\begin{frame}
+  \vspace*{0pt plus 0.2fill}
+  \centering
+  \LARGE\color{auRed}\inserttitle
+  \vfill
+%  \large\normalfont\color{black}
+%  HER SKAL VÆRE ET BILLEDE
+  \vfill
+  \normalsize\color{auBlue}\insertauthor
+  \vspace{0pt plus 0.2fill}
+\end{frame}
+
+
+% Introduktion
+\section*{Eksempel på afsnit}
+
+\begin{frame}
+  \frametitle{Motivation}
+
+  \large{
+    \begin{itemize}
+      \setlength\itemsep{1.5em}
+    \item Dataanalyse er nøglebrik i forskning
+    \item Analysen drives af individuelle valg
+    \item Man skal se sine data!
+    \end{itemize}
+  }
+
+  \uncover<2->{%
+    \plainbreak1
+    
+    \citat{The first principle is that you must not fool yourself --
+      and you are the easiest person to fool.}{Richard Feynman}}
+
+\end{frame}
+
+% Automatisk oversigt
+\begin{frame}
+  \frametitle{Oversigt}
+  \tableofcontents
+  
+  \n{Oversigt}
+\end{frame}
+  
+
+% Slide
+\section{Endnu et afsnit}
+
+\begin{frame}
+  \frametitle{Dataanalyse}
+
+  \begin{block}{I teorien}
+    \begin{itemize}
+    \item Formul\'{e}r hypotese
+    \item \alert<3>{Se på data}
+    \item \alert<3>{Overvej hvad data kan fortælle}
+    \item Foretag analysen
+      \begin{itemize}
+      \item Vælg en model
+      \item Lav et fit
+      \item Er det en god model?
+      \end{itemize}
+    \item Passer hypotesen?
+    \end{itemize}
+  \end{block}
+
+  \uncover<2>{%
+    \begin{block}{I praksis}
+      \begin{itemize}
+      \item Lav et fit
+      \end{itemize}
+    \end{block}
+  }
+\end{frame}
+
+
+%
+% Hidden slides!
+%
+% \appendix
+
+% \section{Supplemental}
+
+
+\end{document}
+
+% ~~~~~~~~~~~~~~~~~
+% Så er vi færdige!
+% ~~~~~~~~~~~~~~~~~

@@ -15,9 +15,9 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Preamble
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Documentclass
-% ~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Kræv etoolbox *før* dokumentklassen indlæses!
 % Denne smarte pakke gør det muligt at definere switches/toggles
 \RequirePackage{etoolbox}
@@ -50,9 +50,9 @@
 \fi
 
 
-% ~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Beamer og layout
-% ~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Forskelle på Lua-/XeTeX og pdfTeX. Det drejer sig om pakken til dansk
 % orddeling og begreber, samt håndtering af æ, ø og å
 \iftoggle{fancyfont}{%
@@ -75,9 +75,9 @@
 % \usepackage[draft]{microtype}
 
 
-% ~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Math layout
-% ~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Specificer beamer font-theme (nødvendig for mathspec)
 \usefonttheme{professionalfonts}
 
@@ -108,11 +108,9 @@
   \newcommand{\whichtex}{pdf\TeX}
 }
 
-
-
-% ~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Science!
-% ~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Den sædvanlige matematik
 \usepackage{amsmath,mathtools}
 
@@ -126,9 +124,9 @@
 \usepackage[version=4]{mhchem}
 
 
-% ~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Fremvisning af syntax
-% ~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Inclusion af kode med fleksibel highlight
 % NB: Kræver at Python-modulet 'Pygments' er installeret
 % NF: Fejler, hvis ikke der compiles med '--shell-escape' !
@@ -137,9 +135,9 @@
 % \setminted[latex]{autogobble=true,highlightcolor=alertbg}
 
 
-% ~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Farver og lignende
-% ~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Definition af nogle farver
 \usepackage{xcolor}
 \definecolor{alertcol}{HTML}{EB811B}   % Taget direkte fra Metropolis-temaet
@@ -167,9 +165,9 @@
 }
 
 
-% ~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Blandet
-% ~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Quotes
 \usepackage[danish=guillemets]{csquotes}
 
@@ -187,9 +185,9 @@
 \usepackage{booktabs}
 
 
-% ~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Lidt makroer
-% ~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Emulering af smart makro fra memoir
 \newcommand{\plainbreak}[1]{\vspace{#1\baselineskip}}
 
@@ -221,16 +219,16 @@
 % Titel, forfatter, etc.
 \title{Her er en titel}
 \subtitle{\small Måske en undertitel}
-\author{Jakob Lysgaard Rørsted}
+\author{Fornavn Efternavn}
 \date{\today}
 \institute{%
   Aarhus Universitet
 }
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Nu begynder dokumentet
-% ~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{document}
 
 
@@ -356,23 +354,16 @@
 
 
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Supplemental
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+% Init appendix-mode!
+% \appendix
 
-
-% TEMPLATE FOR FIGURE-SLIDES
-% { % This is a white frame for including external figures!
-%   \setbeamercolor{background canvas}{bg=white}
-
-%   % SLIDE
-%   \begin{frame}
-%     \frametitle{TITLE}
-
-%     \begin{figure}
-%       \centering
-%       \picplot{\includegraphics[width=\textwidth]{figures/PLOT}}
-%     \end{figure}
-%   \end{frame}
-% }
+% \begin{frame}[standout]
+%   Supplemental
+% \end{frame}
 
 
 \end{document}
