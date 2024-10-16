@@ -230,6 +230,43 @@
 {\renewcommand{\abstractname}{#1}\begin{abstract}}
 {\end{abstract}}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Theorems (add if required)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% % Sætninger og beviser (opsætning længere nede)
+% \usepackage[standard,amsmath,thmmarks]{ntheorem}
+
+% % Definition af sætning, lemma og korollar med fortløbende numerering
+% \newtheorem{thm}{Sætning}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{cor}[thm]{Korollar}
+% \newtheorem{defi}[thm]{Definition}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{remark}[thm]{Bemærkning}
+
+% % Definition af bevis og bevis for
+% \theoremstyle{nonumberplain}
+% \theoremheaderfont{\normalfont\itshape\bfseries}
+% \theorembodyfont{\normalfont}
+% \theoremsymbol{\ensuremath{\square}}
+% \theoremseparator{.}
+% \newtheorem{proof}{Bevis}
+
+% \theoremstyle{empty}
+% \theoremheaderfont{\normalfont\itshape\bfseries}
+% \theorembodyfont{\normalfont}
+% \theoremsymbol{\ensuremath{\square}}
+% \theoremseparator{.}
+% \newtheorem{proofof}{}
+
+% % Nummerering mht. hvilken section vi er i
+% \numberwithin{thm}{chapter}
+
+% % Bemærk, hvis beviser ønskes, bør der tilføjes passende crefnames senere,
+% % efter cleveref er indlæst. Dette gøres med eksempelvis gerne i bunden af
+% % næste del af denne preamble med eksempelvis
+% \crefname{thm}{sætning}{sætninger}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % References
@@ -303,39 +340,6 @@
   }
 }{}
 \makeatother
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Theorems (add if required)
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% % Sætninger og beviser (opsætning længere nede)
-% \usepackage[amsmath,thmmarks]{ntheorem}
-
-% % Definition af sætning, lemma og korollar med fortløbende numerering
-% \newtheorem{thm}{Sætning}
-% \newtheorem{lem}[thm]{Lemma}
-% \newtheorem{cor}[thm]{Korollar}
-% \newtheorem{defi}[thm]{Definition}
-% \newtheorem{prop}[thm]{Proposition}
-% \newtheorem{remark}[thm]{Bemærkning}
-
-% % Definition af bevis og bevis for
-% \theoremstyle{nonumberplain}
-% \theoremheaderfont{\normalfont\itshape\bfseries}
-% \theorembodyfont{\normalfont}
-% \theoremsymbol{\ensuremath{\square}}
-% \theoremseparator{.}
-% \newtheorem{proof}{Bevis}
-
-% \theoremstyle{empty}
-% \theoremheaderfont{\normalfont\itshape\bfseries}
-% \theorembodyfont{\normalfont}
-% \theoremsymbol{\ensuremath{\square}}
-% \theoremseparator{.}
-% \newtheorem{proofof}{}
-
-% % Nummerering mht. hvilken section vi er i
-% \numberwithin{thm}{chapter}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
