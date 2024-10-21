@@ -1,4 +1,5 @@
 ## Specific folders and emacs
+*.DS_store
 auto/
 export/
 EXPORT/
