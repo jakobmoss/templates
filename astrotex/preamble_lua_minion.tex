@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Pretty preamble for Astrophysics     %%
+%%  (c) Jakob Lysgaard Rørsted (Mosumgaard)  %%
+%%                                           %%
+%%              Made for luaLaTeX            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Core
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Essentials
+\usepackage[final]{microtype}
+
+% Language
+\usepackage{babel}
+
+% Fonts
+\usepackage{fontspec}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO,partial=upright}
+\setmainfont{Minion Pro}[Ligatures=TeX,Numbers=OldStyle]
+\setsansfont{Scala Sans Pro}[Scale=MatchLowercase]
+\setmonofont{Fira Mono Regular}[Scale=MatchLowercase]
+\setmathfont{TeX Gyre Pagella Math}[Scale=MatchUppercase]
+% \linespread{1.1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page set-up
+\setlrmarginsandblock{3cm}{*}{1} % Højre-venstre-marginer
+\setulmarginsandblock{*}{3cm}{1} % Top-bund-marginer
+\checkandfixthelayout
+\sloppybottom
+\strictpagechecktrue
+
+% Basic pagestyle
+\makeoddfoot{plain}{}{\sffamily\small\thepage \ / \thelastpage}{}
+
+% Section headings
+\setsecheadstyle{\large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\normalsize\bfseries\sffamily\raggedright}
+
+% Chapter headings
+\renewcommand*{\chaptitlefont}{\Large\sffamily\bfseries\raggedright}
+\renewcommand*{\chapnumfont}{\chaptitlefont}    % To harmonise the font sizes
+\renewcommand*{\chapnamefont}{\chaptitlefont}   % idem
+
+% Title
+\usepackage{titling}
+\pretitle{\begin{center}\sffamily\LARGE}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\sffamily\large}
+\postauthor{\end{center}}
+\predate{\begin{center}\sffamily}
+\postdate{\end{center}}
+\setlength{\droptitle}{-6em}
+
+% Magic  --> If only one page: No header or footer
+\AtEndDocument{\ifnum\value{page} = 1\thispagestyle{empty}\fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures and floats
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include graphics
+\usepackage{graphicx}
+
+% Width of caption
+\captionwidth{.9\linewidth}
+\changecaptionwidth
+
+% Trick to automatically end captions with a period
+\captiontitlefinal{.}
+
+% Allow subfloats in figure environment
+\newsubfloat{figure}
+
+% Cool tables with footnotes
+\usepackage{threeparttable, etoolbox}
+\appto\TPTnoteSettings{\footnotesize}  % Requires etoolbox
+
+% Pretty colors
+\usepackage{xcolor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Science
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+\usepackage{mathtools}
+
+% Units
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\DeclareSIUnit\au{AU}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\msun{M_{\odot}}
+\DeclareSIUnit\lsun{L_{\odot}}
+
+% Delimeters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\langle}{\rangle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Smart quotations
+\usepackage{csquotes}
+
+% URL's
+\usepackage{url}
+
+% Nice itemizations
+\usepackage{enumitem}
+% \firmlists
+
+% Smart references
+\usepackage{varioref}
+\usepackage{cleveref}
+
+% Debugging
+\usepackage[margin,draft]{fixme} \fxusetheme{color}
+
+% Format of date
+\usepackage[useregional]{datetime2}
+\DTMlangsetup[en-GB]{ord=omit}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nice spacing in macros
+\usepackage{xspace}
+
+% Small division
+\newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
+
+% Seperation in equation
+\newcommand\eqsep{\ensuremath{\quad , \quad}}
+
+% Lazyness
+\newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
+\newcommand\logg{\ensuremath{\log g}\xspace}
+
+% Name
+\newcommand\numpy{NumPy\xspace}
+\newcommand\scipy{SciPy\xspace}
+\newcommand\kepler{\textsl{Kepler}\xspace}
+
+% Diff
+\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
+
+% More lazy stuff
+\newcommand\parname[2]{\left(#1\right)_{\text{#2}}}
+
+% Gradients
+\newcommand\radgrad{\ensuremath{\nabla_{\textup{rad}}}\xspace}
+\newcommand\adgrad{\ensuremath{\nabla_{\textup{ad}}}\xspace}
+
+% Vectors (we are doing physics!)
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
+
+% Nice subscript
+\newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
+%%%%%%%%%%%%%%
+%% The end! %%
+%%%%%%%%%%%%%%

@@ -1,0 +1,288 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Pretty preamble for Astrophysics     %%
+%%  (c) Jakob Lysgaard Rørsted (Mosumgaard)  %%
+%%                                           %%
+%%              Made for luaLaTeX            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Core
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Essentials
+\usepackage[final]{microtype}
+
+% Language
+\usepackage{babel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts -- definiton from thesis (overkill?)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  *** Comments regarding math font selection ***
+%
+%  Use the main font as math font for the glyphs it has. Use a fallback for
+%  the rest. \setmathfont with range={…} and (s)script-features={…} are from
+%  unicode-math. Script=Latin is directly from fontspec.
+%
+%  Script=Latin tells fontspec to use the OpenType script 'Latin' instead
+%  of the expected 'Math'. The 'Math' script is not defined in normal OpenType
+%  fonts as they are not math types.
+%
+%  (s)script-features={} refer to script unrelated the OpenType script above.
+%  It overwrites unicode-maths normal OpenType feature flags for super- and
+%  subscript. It defaults to '+ssty', which is also missing from the fonts.
+
+% Use fontspec to set the main (OpenType) fonts
+\usepackage{fontspec}
+
+% Use the unicode math package to enable the use of OpenType math fonts
+% --> Silence warnings related to mathtools
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+% \usepackage{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO,partial=upright}
+
+% Use \lining to get lining numbers in a scope.
+\newcommand{\lining}{\addfontfeature{Numbers=Lining}}
+
+% Supress the 'Th' ligature (by default active in Arno Pros 'liga' feature). We
+% create a new OpenType feature called 'noth' that substitute the 'T_h' ligature
+% with 'T' and 'h'. The 'noth' feature is added below in \setmainfont. From
+% https://tex.stackexchange.com/a/315635/13659 with more info here:
+% http://pragma-ade.com/general/manuals/fonts-mkiv.pdf
+\directlua{
+  fonts.handlers.otf.addfeature{
+    name = "noth",
+    type = "multiple",
+    data = {
+      ["T_h"] = { "T", "h" },
+    },
+  }
+}
+
+% ~~~~~~~~~~
+% Main fonts
+% ~~~~~~~~~~
+
+% Arno Pro as regular font. Use letterspaced small caps (because microtype's
+% tracking is bugged).
+\setmainfont{Arno Pro}[%
+  Ligatures=TeX,
+  Numbers=OldStyle,
+  RawFeature=+noth,
+  SmallCapsFeatures = {%
+    LetterSpace = 5,
+    Letters = SmallCaps}
+]
+
+% Scala Sans as sans font (OldStyle numerals are standard)
+\setsansfont{Scala Sans Pro}[%
+  Scale=MatchLowercase,
+  SmallCapsFeatures = {%
+    LetterSpace = 5,
+    Letters = SmallCaps}
+]
+
+% Fira Mono as teletype font
+\setmonofont{Fira Mono Regular}[Scale=MatchLowercase]
+
+
+
+% ~~~~~~~~~~
+% Math fonts
+% ~~~~~~~~~~
+% SEE COMMENTS ON MATH FONTS AT THE TOP OF THIS FILE
+
+% Note also the nice list here: tex.stackexchange.com/questions/425098/
+
+% Some comments on symbols
+% * "2202  is (unicode) partial
+% * "1D715 is (unicode) italic partial
+% * "2212  is (unicode) minus
+% * "002C  is (unicode) comma
+% * "002F  is (unicode) slash
+% * "0028  is (unicode) left paranthesis [pair with "0029]
+% * "005B  is (unicode) left square bracket [pair with "005D]
+% * "007B  is (unicode) left curly bracket [pair with "007D]
+% * "007C  is (unicode) vertical line
+
+% Note to self: Add colors to fonts to track usage (Colour=FF0000)
+
+% Math fallback
+\setmathfont{TeX Gyre Pagella Math}[Scale=MatchUppercase]
+
+% Math fallback, part II
+% --> Replace some symbols using another font(s) [note different scalings]
+
+% * Integral and solar symbol is too small in TeX Gyre Pagella
+\setmathfont{Cambria Math}[Scale=0.84,range={\int,\odot,"007C}]
+
+% * Parantheses are too flimsy in TeX Gyre Pagella (and not pretty in Cambria)
+\setmathfont{Asana Math}[Scale=0.90,range={"0028,"0029,"005B,"005D,"007B,"007D}]
+
+% Use main for as much as possible
+\setmathfont{Arno Pro}[range={up/{num,latin,Latin,greek,Greek},%
+  \mathexclam,\mathplus,\pm,\div,\dagger,\ddagger,\minus,\mathoctothorpe,%
+  \mathdollar,\mathpercent,\mathampersand,\mathquestion,\mathatsign,%
+  \mathsterling,\mathyen,\euro,\increment,\infty,\checkmark,%
+  \less,\equal,\greater,\ne,\leq,\geq,\matheth,\ell,"2202,"2212,"002C,"002F,},%
+Script=Latin, script-features={}, sscript-features={}]
+
+% More math families
+\setmathfont{Arno Pro Italic}[range={it/{latin,Latin,greek,Greek}},%
+Script=Latin, script-features={}, sscript-features={}]
+\setmathfont{Arno Pro Bold}[range = {bfup/{num,latin,Latin,greek,Greek}},%
+Script=Latin, script-features={}, sscript-features={}]
+\setmathfont{Arno Pro Bold Italic}[range={bfit/{latin,Latin,greek,Greek}},%
+Script=Latin, script-features={}, sscript-features={}]
+
+% Set Arno Pro with the swash style as the math cal font
+\newfontface\swash[Ligatures=TeX,Numbers=OldStyle,Style=Swash]{Arno Pro Italic}
+\setmathfont{Arno Pro Italic}[range={cal,bfcal}, RawFeature={+swsh},
+Script=Latin, script-features={}, sscript-features={}]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page set-up
+\setlrmarginsandblock{3cm}{*}{1} % Højre-venstre-marginer
+\setulmarginsandblock{*}{3cm}{1} % Top-bund-marginer
+\checkandfixthelayout
+\sloppybottom
+\strictpagechecktrue
+
+% Basic pagestyle
+\makeoddfoot{plain}{}{\sffamily\small\thepage \ / \thelastpage}{}
+
+% Section headings
+\setsecheadstyle{\large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\normalsize\bfseries\sffamily\raggedright}
+
+% Chapter headings
+\renewcommand*{\chaptitlefont}{\Large\sffamily\bfseries\raggedright}
+\renewcommand*{\chapnumfont}{\chaptitlefont}    % To harmonise the font sizes
+\renewcommand*{\chapnamefont}{\chaptitlefont}   % idem
+
+% Title
+\usepackage{titling}
+\pretitle{\begin{center}\sffamily\LARGE}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\sffamily\large}
+\postauthor{\end{center}}
+\predate{\begin{center}\sffamily}
+\postdate{\end{center}}
+\setlength{\droptitle}{-6em}
+
+% Magic  --> If only one page: No header or footer
+\AtEndDocument{\ifnum\value{page} = 1\thispagestyle{empty}\fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures and floats
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include graphics
+\usepackage{graphicx}
+
+% Width of caption
+\captionwidth{.9\linewidth}
+\changecaptionwidth
+
+% Trick to automatically end captions with a period
+\captiontitlefinal{.}
+
+% Allow subfloats in figure environment
+\newsubfloat{figure}
+
+% Cool tables with footnotes
+\usepackage{threeparttable, etoolbox}
+\appto\TPTnoteSettings{\footnotesize}  % Requires etoolbox
+
+% Pretty colors
+\usepackage{xcolor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Science
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+\usepackage{mathtools}
+
+% Units
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\DeclareSIUnit\au{AU}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\msun{M_{\odot}}
+\DeclareSIUnit\lsun{L_{\odot}}
+
+% Delimeters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\langle}{\rangle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References 'n' stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Smart quotations
+\usepackage[danish=guillemets]{csquotes}
+
+% URL's
+\usepackage{url}
+
+% Nice itemizations
+\usepackage{enumitem}
+% \firmlists
+
+% Smart references
+\usepackage{varioref}
+\usepackage{cleveref}
+
+% Debugging
+\usepackage[margin,draft]{fixme} \fxusetheme{color}
+
+% Format of date
+\usepackage[useregional]{datetime2}
+\DTMlangsetup[en-GB]{ord=omit}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nice spacing in macros
+\usepackage{xspace}
+
+% Small division
+\newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
+
+% Seperation in equation
+\newcommand\eqsep{\ensuremath{\quad , \quad}}
+
+% Lazyness
+\newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
+\newcommand\logg{\ensuremath{\log g}\xspace}
+
+% Name
+\newcommand\numpy{NumPy\xspace}
+\newcommand\scipy{SciPy\xspace}
+\newcommand\kepler{\textsl{Kepler}\xspace}
+
+% Diff
+\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
+
+% More lazy stuff
+\newcommand\parname[2]{\left(#1\right)_{\text{#2}}}
+
+% Gradients
+\newcommand\radgrad{\ensuremath{\nabla_{\textup{rad}}}\xspace}
+\newcommand\adgrad{\ensuremath{\nabla_{\textup{ad}}}\xspace}
+
+% Vectors (we are doing physics!)
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
+
+% Nice subscript
+\newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
+%%%%%%%%%%%%%%
+%% The end! %%
+%%%%%%%%%%%%%%

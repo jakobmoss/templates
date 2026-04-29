@@ -3,6 +3,7 @@
 auto/
 export/
 EXPORT/
+.auctex-auto
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
