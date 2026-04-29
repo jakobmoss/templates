@@ -6,7 +6,7 @@
 %%
 %%  Preamble
 %%
-%%  Original preamble: Jakob Lysgaard Rørsted (Mosumgaard)
+%%  Original preamble: Jakob Lysgaard Rørsted
 %% ============================================================================
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,19 +19,11 @@
 % Microtype -- Subliminal refinements towards typographical perfection
 \usepackage{microtype}
 \microtypesetup{final}
-% \microtypesetup{tracking = true}
 
 % Various tools needed in the preamble and by some packages
 \usepackage{etoolbox}
 
-% Inclusion of code
-% --> Needs to be loaded this early to avoid problems with some font packages
-% NOTE: This packages requires the Python-module 'Pygments' to be installed
-% NOTE: Fails unless this file is compiled with '--shell-escape' !
-% \usepackage{minted}
-% \usemintedstyle{friendly}
-
-% Language (has to be loaded before the fonts..?)
+% Language
 \usepackage{babel}
 
 % Fonts: Linux Libertine (http://www.tug.dk/FontCatalogue/linuxlibertine/)
@@ -45,6 +37,8 @@
 % Page 'n' stuff
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Page set-up
+% --> In combination with the font selection above, this results in the
+%     required 2400 characters on a page
 \setlrmarginsandblock{3.7cm}{*}{1.5}  % Old: {3.2cm}{*}{1.5}
 \setulmarginsandblock{*}{4.7cm}{1}    % Old: {*}{3.7cm}{1}
 
@@ -63,10 +57,11 @@
 % Page and chapter styles
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-% NOTE: Colors added everywhere, to make them easy to change!
+% NOTE: Color (black) added in the definitions below, to make them easy to
+%       change
 \usepackage{xcolor}
 
-% Fonts
+% Some font definitions
 \newcommand{\foliofont}{\color{black}\sffamily}
 \newcommand{\headerfont}{\color{black}\sffamily}
 
@@ -124,6 +119,9 @@
 \pagestyle{jrmbsc}
 \chapterstyle{jrmbsc}
 
+% Less whitespace above chapters
+\addtolength{\beforechapskip}{-9.65\baselineskip}
+
 % Turn on numbering of subsections
 \setsecnumdepth{subsection}
 
@@ -131,9 +129,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Floats, captions and footnotes
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Include graphics
-% \usepackage{graphicx}  % ALREADY IMPORTED
-
 % Subfloats
 \newsubfloat{figure}
 \subcaptionstyle{\raggedright}
@@ -169,6 +164,9 @@
 \usepackage{mathtools}
 \mathtoolsset{showonlyrefs=false,showmanualtags}
 % \mathtoolsset{showonlyrefs=true}  % If only to show numbers on ref'ed eq's
+
+% Derivatives
+\usepackage{derivative}
 
 % Units
 \usepackage{siunitx}
@@ -219,7 +217,7 @@
 \setlogodrop{0.158em}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% References
+% References and bibliography
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Smart quotations
 \usepackage{csquotes}
@@ -228,6 +226,9 @@
 \usepackage{url}
 
 % Bibliography
+% --> Change this to suit your needs
+% --> With this one, you can use \parancite{} and \textcite{}
+% --> When using a numeric style instead, use \cite{}
 \usepackage[backend=biber,
   style=authoryear-comp,  % Citation style as (AUTHOR YEAR)
   sorting=ynt,            % Sort citations as YEAR-NAME-TITLE
@@ -243,6 +244,9 @@
   eprint=false,
   hyperref=true]{biblatex}
 
+% Very simple alternative to the bibliography (in citation order)
+% \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+
 % Actually apply the citation order (because the bibliography is sorted differently)
 \assignrefcontextentries[]{*}
 
@@ -253,7 +257,21 @@
 \setlength\bibitemsep{1.1\itemsep}
 
 % Change bib-order
-\DeclareNameAlias{sortname}{last-first}
+\DeclareNameAlias{sortname}{family-given}
+
+% IF YOU ARE WRITING IN DANISH, CONSIDER SWITCHING THESE ON:
+%
+% Her ændres standardnavnet på bibliografien (som på dansk er "Litteratur")
+% til "Litteraturliste". Du må helt selv vælge titlen.
+% --> Typisk ikke påkrævet på engelsk, men dog muligt
+%\defbibheading{dkbib}[Litteraturliste]{%
+%  \chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
+%
+% Her skiftes "m.fl." til "et al.", som er standard i visse videnskaber
+% \DefineBibliographyStrings{danish}{%
+%   andothers = {et\addabbrvspace al\adddot}
+% }
+
 
 % Referencing packages (needs to be loaded in this order!)
 % --> For references, use: \cref{}  or \Cref{} !
@@ -293,32 +311,15 @@
 \newcommand\starbreak{\medskip\fancybreak{$*$\qquad$*$\qquad$*$}\medskip}
 
 % Seperation in equation
-\newcommand\eqsep{\ensuremath{\quad , \quad}}
+\newcommand\eqsep{\quad , \quad}
 
 % Generic names
 \newcommand\numpy{NumPy\xspace}
 \newcommand\scipy{SciPy\xspace}
-\newcommand\kepler{\textsl{Kepler}\xspace}
 
-% Diff
-\newcommand\diff[2]{\frac{\text{d}#1}{\text{d}#2}}
-\newcommand\pdiff[2]{\frac{\partial #1}{\partial #2}}
-\newcommand\idiff[2]{\ensuremath{\text{d}#1/\text{d}#2}}
+% Change vectors to boldface symbols (we are doing physics!)
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
 
-% More lazy stuff
-\newcommand\parname[2]{\left(#1\right)_{\textup{#2}}}
-
-% Vectors (we are doing physics!)
-\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}\xspace}
-
-% Nice subscript
-\newcommand\var[2]{\ensuremath{#1_{\textup{#2}}\,}\xspace}
-
-% Specific abbreviations and names
-\newcommand\eos{EoS\xspace}
-\newcommand\gar{\textsc{garstec}\xspace}
-\newcommand\Gar{\textsc{Garstec}\xspace}
-
-% Specific things to be repeated often in the text
-\newcommand\teff{\ensuremath{T_{\textup{eff}}}\xspace}
-\newcommand\logg{\ensuremath{\log g}\xspace}
+% Nice subscript, two different ways
+\newcommand\idx[1]{{\textup{#1}}}
+\newcommand\var[2]{#1_{\textup{#2}}}

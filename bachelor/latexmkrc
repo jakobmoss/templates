@@ -1,7 +1,6 @@
-# Always PDF!
 $pdf_mode = 1;
-
-# SELECT ONE OF THE OPTIONS BELOW
-
 $pdflatex = 'pdflatex -interaction=nonstopmode';
-# $pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
+
+# This is clever if you open the pdf in a viewer of your own choice;
+# otherwise just comment it out.
+$view = 'none'

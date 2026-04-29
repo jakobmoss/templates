@@ -6,10 +6,7 @@
 %%
 %%  IMPORTANT: Compile with pdfLaTeX+biber !
 %%
-%%  Remarks:
-%%  - Needs to be executed with '--shell-escape' if the minted-package is used!
-%%
-%%  Original template/preamble: Jakob Lysgaard Rørsted (Mosumgaard)
+%%  Original template/preamble: Jakob Lysgaard Rørsted
 %% ============================================================================
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,7 +59,7 @@ a4paper
 
 % Frontpage and abstract (this will set the page number to count all pages)
 % If you want to let the page counter reset, go to line 71 in the file.
-\include{front/frontpages}
+\include{frontpages}
 
 % List of fixme-notes -- REMEMBER TO REMOVE!
 %  --> When removed, things will end on the correct pages
@@ -71,7 +68,7 @@ a4paper
 % Table of contents manually aligned with abstract
 \clearpage
 % \tableofcontents*
-{\addtolength{\beforechapskip}{-2\baselineskip}\tableofcontents*}
+{\addtolength{\beforechapskip}{1.0\baselineskip}\tableofcontents*}
 
 
 % ~~~~~~~~~~~
@@ -96,6 +93,7 @@ a4paper
 \clearpage
 
 % Change the sorting of references to NAME-YEAR-TITLE (see preamble for details)
+% --> Alternative below
 \begin{refcontext}[sorting=nyt]
   \raggedyright[4em] \printbibliography
   %
@@ -103,6 +101,12 @@ a4paper
   % \raggedyright[4em] {\addtolength{\beforechapskip}{-6\baselineskip}\printbibliography}
 \end{refcontext}
 
+% If you are using the numeric style, simply do this instead ... or the
+% compressed version
+% \raggedyright[4em] \printbibliography
+%
+% .. or with the Danish header
+% \raggedyright[4em] \printbibliography[heading=dkbib]
 
 %
 % Appendix
