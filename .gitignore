@@ -5,6 +5,9 @@ export/
 EXPORT/
 .auctex-auto
 
+## Compressed versions for Overleaf
+*.zip
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
