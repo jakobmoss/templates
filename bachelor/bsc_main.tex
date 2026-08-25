@@ -2,7 +2,7 @@
 %%
 %%  Bachelor's project
 %%
-%%  Author: FORNAVN EFTERNAVN
+%%  Author: John Doe (please change)
 %%
 %%  IMPORTANT: Compile with pdfLaTeX+biber !
 %%
@@ -24,8 +24,10 @@ british,
 a4paper
 ]{memoir}
 
-% Global definition: Name of the project (e.g. for the headers)
+% Global definition: Author and name of the project (e.g. for the headers)
+% ** REMEMBER TO MODIFY THIS FOR YOUR PROJECT **
 \newcommand{\projecttitle}{Coffee Consumption by Physics Students}
+\newcommand{\projectauthor}{John Doe}
 
 % Read the actual preamble
 \input{preamble}
@@ -67,16 +69,12 @@ a4paper
 
 % Table of contents manually aligned with abstract
 \clearpage
-% \tableofcontents*
 {\addtolength{\beforechapskip}{1.0\baselineskip}\tableofcontents*}
 
 
 % ~~~~~~~~~~~
 % Mainmatter
 % ~~~~~~~~~~~
-
-% Since frontmatter is not set, no need to set mainmatter
-% \mainmatter
 
 % Here the chapters are organised in individual files, but in the same folder.
 
