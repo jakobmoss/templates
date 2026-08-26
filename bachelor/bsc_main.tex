@@ -12,7 +12,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Preamble and input control
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 % Use memoir!
 \documentclass[%
 final,
@@ -24,12 +23,29 @@ british,
 a4paper
 ]{memoir}
 
-% Global definition: Author and name of the project (e.g. for the headers)
+% Various tools needed in the preamble and by some
+\usepackage{etoolbox}
+\newtoggle{anon}
+\toggletrue{anon}
+
+% Global definition: Name of the project (e.g. for the headers)
 % ** REMEMBER TO MODIFY THIS FOR YOUR PROJECT **
 \newcommand{\projecttitle}{Coffee Consumption by Physics Students}
+
+% Global definition: Author and supervisor of the project
+%
+% IMPORTANT NOTE: According to the regulations, the project must be handed in
+%                 without a name to allow for a blinded/anonymous evaluation by
+%                 the external examiner! Only set the toggle 'anon' to false if
+%                 you wish to make a version for yourself with the name
+%
+% ** REMEMBER TO MODIFY THIS FOR YOUR PROJECT **
 \newcommand{\projectauthor}{John Doe}
+\newcommand{\projectsupervisor}{Bob and Alice}
+% \togglefalse{anon}
 
 % Read the actual preamble
+% --> Add your own stuff inside that file as well.
 \input{preamble}
 
 % Uncomment to include all  -->  Ugly hack, I know !

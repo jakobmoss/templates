@@ -28,15 +28,19 @@
 
     \vspace*{0.1cm}
 
+    % Title
     \fontsize{26pt}{29pt}\selectfont
 
     \projecttitle{} \par
 
     \vspace{0.8cm}
 
+    % Name (if not blinded)
+    \iftoggle{anon}{}{%
     \fontsize{18pt}{22pt}\selectfont
 
     \projectauthor{} \par
+    }
 
     \vspace{2.7cm}
 
@@ -109,16 +113,15 @@ This is an abstract \ldots
 
   \smallskip
 
-  Bachelor's project by \projectauthor{}.
+  % Only insert information for non-blinded hand-in version
+  Bachelor's project\iftoggle{anon}{.}{%
+    ~by \projectauthor{}.
 
-  % ** REMEMBER TO MODIFY THIS FOR YOUR PROJECT **
-  The project is supervised by Bob and Alice
+    The project is supervised by \projectsupervisor{}.
+  }
 
   Typeset by the author using \LaTeX{} and the \textsf{memoir} document class,
   using Linux Libertine and Linux Biolinum at {\fontandleading}.
 
-  \LaTeX{}-template originally made by Jakob Lysgaard Rørsted.
-
-  % Consider removing this if you are actually not printing it
-  Printed at Aarhus University
+  \LaTeX{}-template originally by Jakob Lysgaard Rørsted, Aarhus University.
 }
